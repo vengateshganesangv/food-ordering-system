@@ -1,0 +1,19 @@
+{
+  "name": "@food-ordering/kafka-consumer",
+  "version": "1.0.0",
+  "description": "Kafka consumer implementation",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@food-ordering/kafka-config": "workspace:*",
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.2"
+  }
+}
