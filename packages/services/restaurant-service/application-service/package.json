@@ -1,0 +1,23 @@
+{
+  "name": "@food-ordering-system/restaurant-application-service",
+  "version": "1.0.0",
+  "description": "Restaurant Service Application Layer - Use cases, ports, and DTOs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@food-ordering-system/common-domain": "*",
+    "@food-ordering-system/outbox": "*",
+    "@food-ordering-system/restaurant-domain-core": "*",
+    "tsyringe": "^4.8.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@food-ordering-system/payment-domain-core",
+  "version": "1.0.0",
+  "description": "Payment Service Domain Core - DDD entities, value objects, and domain logic",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@food-ordering-system/common-domain": "*",
+    "tsyringe": "^4.8.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "typescript": "^5.0.0"
+  }
+}

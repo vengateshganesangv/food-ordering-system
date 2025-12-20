@@ -1,0 +1,36 @@
+{
+  "name": "@food-ordering-system/order-service",
+  "version": "1.0.0",
+  "description": "Order Service - Main application container with dependency injection",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@food-ordering-system/common-domain": "*",
+    "@food-ordering-system/order-domain-core": "*",
+    "@food-ordering-system/order-application-service": "*",
+    "@food-ordering-system/order-dataaccess": "*",
+    "@food-ordering-system/order-messaging": "*",
+    "@food-ordering-system/order-application": "*",
+    "@food-ordering-system/outbox": "*",
+    "@food-ordering-system/saga": "*",
+    "@food-ordering-system/kafka-producer": "*",
+    "@food-ordering-system/kafka-consumer": "*",
+    "express": "^4.18.2",
+    "typeorm": "^0.3.17",
+    "pg": "^8.11.0",
+    "tsyringe": "^4.8.0",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.0.0",
+    "@types/pg": "^8.10.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.0"
+  }
+}

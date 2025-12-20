@@ -1,0 +1,20 @@
+{
+  "name": "@food-ordering-system/outbox",
+  "version": "1.0.0",
+  "description": "Outbox pattern infrastructure for food ordering system",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/node-cron": "^3.0.11",
+    "typescript": "^5.3.2"
+  }
+}

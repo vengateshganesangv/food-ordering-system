@@ -1,0 +1,20 @@
+{
+  "name": "@food-ordering-system/common-application",
+  "version": "1.0.0",
+  "description": "Common application layer for food ordering system",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@food-ordering-system/common-domain": "1.0.0",
+    "class-validator": "^0.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.2"
+  }
+}

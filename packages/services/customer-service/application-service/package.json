@@ -1,0 +1,23 @@
+{
+  "name": "@food-ordering-system/customer-service-application-service",
+  "version": "1.0.0",
+  "description": "Customer Service Application Layer - Use cases, DTOs, and ports",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@food-ordering-system/common-domain": "*",
+    "@food-ordering-system/customer-service-domain-core": "*",
+    "inversify": "^6.0.1",
+    "reflect-metadata": "^0.1.13",
+    "class-validator": "^0.14.0",
+    "class-transformer": "^0.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

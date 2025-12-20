@@ -1,11 +1,48 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# TypeScript
+dist/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Test
+coverage/
+.nyc_output/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Docker volumes
+volumes/
+infrastructure/docker-compose/volumes/**/**
+
+# Java (legacy - keeping for reference)
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-volumes/
-
-*.log
 
 ### STS ###
 .apt_generated
@@ -17,7 +54,6 @@ volumes/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
 *.iws
 *.iml
 *.ipr
@@ -25,14 +61,8 @@ volumes/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
-/dist/
 /nbdist/
 /.nb-gradle/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-
-infrastructure/docker-compose/volumes/**/**

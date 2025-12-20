@@ -1,0 +1,22 @@
+{
+  "name": "@food-ordering-system/kafka-config-data",
+  "version": "1.0.0",
+  "description": "Kafka configuration data interfaces for food ordering system",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "kafka",
+    "config",
+    "food-ordering"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

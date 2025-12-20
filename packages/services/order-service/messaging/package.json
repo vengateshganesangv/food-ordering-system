@@ -1,0 +1,24 @@
+{
+  "name": "@food-ordering-system/order-messaging",
+  "version": "1.0.0",
+  "description": "Order Service Messaging - Kafka publishers and listeners",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@food-ordering-system/common-domain": "*",
+    "@food-ordering-system/order-domain-core": "*",
+    "@food-ordering-system/order-application-service": "*",
+    "@food-ordering-system/outbox": "*",
+    "@food-ordering-system/kafka-producer": "*",
+    "@food-ordering-system/kafka-consumer": "*",
+    "tsyringe": "^4.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

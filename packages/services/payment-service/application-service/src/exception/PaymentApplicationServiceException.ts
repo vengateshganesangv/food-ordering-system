@@ -1,0 +1,6 @@
+export class PaymentApplicationServiceException extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'PaymentApplicationServiceException';
+  }
+}

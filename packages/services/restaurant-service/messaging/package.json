@@ -1,0 +1,24 @@
+{
+  "name": "@food-ordering-system/restaurant-messaging",
+  "version": "1.0.0",
+  "description": "Restaurant Service Messaging Layer - Kafka listeners and publishers",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@food-ordering-system/common-domain": "*",
+    "@food-ordering-system/kafka": "*",
+    "@food-ordering-system/outbox": "*",
+    "@food-ordering-system/restaurant-domain-core": "*",
+    "@food-ordering-system/restaurant-application-service": "*",
+    "kafkajs": "^2.2.0",
+    "tsyringe": "^4.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

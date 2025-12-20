@@ -1,0 +1,28 @@
+{
+  "name": "@food-ordering-system/kafka-consumer",
+  "version": "1.0.0",
+  "description": "Kafka consumer implementation for food ordering system using KafkaJS",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "kafka",
+    "consumer",
+    "kafkajs",
+    "food-ordering"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "kafkajs": "^2.2.4",
+    "@food-ordering-system/kafka-config-data": "file:../kafka-config-data"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

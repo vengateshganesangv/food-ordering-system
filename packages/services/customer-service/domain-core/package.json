@@ -1,0 +1,20 @@
+{
+  "name": "@food-ordering-system/customer-service-domain-core",
+  "version": "1.0.0",
+  "description": "Customer Service Domain Core - DDD entities, value objects, and domain logic",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@food-ordering-system/common-domain": "*",
+    "inversify": "^6.0.1",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

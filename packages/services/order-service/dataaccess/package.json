@@ -1,0 +1,29 @@
+{
+  "name": "@food-ordering-system/order-dataaccess",
+  "version": "1.0.0",
+  "description": "Order Service Data Access Layer - TypeORM entities and repository implementations",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@food-ordering-system/common-domain": "*",
+    "@food-ordering-system/order-domain-core": "*",
+    "@food-ordering-system/order-application-service": "*",
+    "@food-ordering-system/outbox": "*",
+    "@food-ordering-system/saga": "*",
+    "typeorm": "^0.3.17",
+    "pg": "^8.11.0",
+    "decimal.js": "^10.4.3",
+    "tsyringe": "^4.8.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "@types/pg": "^8.10.0",
+    "typescript": "^5.0.0"
+  }
+}
