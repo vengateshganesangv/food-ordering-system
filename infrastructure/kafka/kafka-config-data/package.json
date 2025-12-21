@@ -1,0 +1,16 @@
+{
+  "name": "@food-ordering-system/kafka-config-data",
+  "version": "1.0.0",
+  "description": "Kafka configuration data",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.3.2"
+  }
+}
