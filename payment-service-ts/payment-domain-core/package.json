@@ -1,0 +1,25 @@
+{
+  "name": "@food-ordering-system/payment-domain-core",
+  "version": "1.0.0",
+  "description": "Payment Service Domain Core - Core business logic and domain models",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "payment",
+    "domain",
+    "ddd"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

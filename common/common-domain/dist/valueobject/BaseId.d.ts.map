@@ -1,0 +1,1 @@
+{"version":3,"file":"BaseId.d.ts","sourceRoot":"","sources":["../../src/valueobject/BaseId.ts"],"names":[],"mappings":"AAAA;;;GAGG;AACH,8BAAsB,MAAM,CAAC,CAAC;IAC5B,OAAO,CAAC,QAAQ,CAAC,KAAK,CAAI;IAE1B,SAAS,aAAa,KAAK,EAAE,CAAC;IAIvB,QAAQ,IAAI,CAAC;IAIpB;;OAEG;IACI,MAAM,CAAC,KAAK,EAAE,OAAO,GAAG,OAAO;IAiBtC;;OAEG;IACI,QAAQ,IAAI,MAAM;CAe1B"}

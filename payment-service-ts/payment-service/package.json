@@ -1,0 +1,47 @@
+{
+  "name": "@food-ordering-system/payment-service",
+  "version": "1.0.0",
+  "description": "Payment Service Main Application",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "payment",
+    "service",
+    "microservice"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "^1.0.0",
+    "@food-ordering-system/common-kafka": "^1.0.0",
+    "@food-ordering-system/payment-domain-core": "^1.0.0",
+    "@food-ordering-system/payment-application-service": "^1.0.0",
+    "@food-ordering-system/payment-dataaccess": "^1.0.0",
+    "@food-ordering-system/payment-messaging": "^1.0.0",
+    "express": "^4.18.2",
+    "js-yaml": "^4.1.0",
+    "kafkajs": "^2.2.4",
+    "node-cron": "^3.0.3",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.1.14",
+    "tsyringe": "^4.8.0",
+    "typeorm": "^0.3.19",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.10.6",
+    "@types/node-cron": "^3.0.11",
+    "@types/pg": "^8.10.9",
+    "@types/uuid": "^9.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

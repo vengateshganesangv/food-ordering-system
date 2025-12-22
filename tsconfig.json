@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "lib": ["ES2022"],
+    "outDir": "./dist",
+    "rootDir": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "@common/domain": ["common/common-domain/src"],
+      "@common/application": ["common/common-application/src"],
+      "@common/dataaccess": ["common/common-dataaccess/src"],
+      "@infrastructure/kafka-config": ["infrastructure/kafka/kafka-config-data/src"],
+      "@infrastructure/kafka-producer": ["infrastructure/kafka/kafka-producer/src"],
+      "@infrastructure/kafka-consumer": ["infrastructure/kafka/kafka-consumer/src"],
+      "@infrastructure/kafka-model": ["infrastructure/kafka/kafka-model/src"],
+      "@infrastructure/saga": ["infrastructure/saga/src"],
+      "@infrastructure/outbox": ["infrastructure/outbox/src"]
+    }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist", "**/node_modules", "**/dist"]
+}

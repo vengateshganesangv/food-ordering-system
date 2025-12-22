@@ -1,0 +1,26 @@
+{
+  "name": "@food-ordering-system/kafka-producer",
+  "version": "1.0.0",
+  "description": "Kafka producer implementation for the food ordering system",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "kafka",
+    "producer",
+    "food-ordering"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

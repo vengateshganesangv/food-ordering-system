@@ -1,0 +1,30 @@
+{
+  "name": "@food-ordering-system/customer-messaging",
+  "version": "1.0.0",
+  "description": "Customer messaging layer - Contains Kafka publishers and message mappers",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "customer",
+    "messaging",
+    "kafka"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/customer-domain-core": "file:../customer-domain/customer-domain-core",
+    "@food-ordering-system/customer-application-service": "file:../customer-domain/customer-application-service",
+    "@food-ordering-system/kafka-producer": "file:../../infrastructure/kafka/kafka-producer",
+    "@food-ordering-system/kafka-model": "file:../../infrastructure/kafka/kafka-model",
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

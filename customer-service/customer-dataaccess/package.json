@@ -1,0 +1,30 @@
+{
+  "name": "@food-ordering-system/customer-dataaccess",
+  "version": "1.0.0",
+  "description": "Customer data access layer - Contains repository implementations and database entities",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "customer",
+    "dataaccess",
+    "repository"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "file:../../common/common-domain",
+    "@food-ordering-system/customer-domain-core": "file:../customer-domain/customer-domain-core",
+    "@food-ordering-system/customer-application-service": "file:../customer-domain/customer-application-service",
+    "typeorm": "^0.3.17",
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

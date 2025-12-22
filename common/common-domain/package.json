@@ -1,0 +1,24 @@
+{
+  "name": "@food-ordering-system/common-domain",
+  "version": "1.0.0",
+  "description": "Common domain layer for food ordering system - DDD building blocks",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "ddd",
+    "domain-driven-design",
+    "food-ordering",
+    "common"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

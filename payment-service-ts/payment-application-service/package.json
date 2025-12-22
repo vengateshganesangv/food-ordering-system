@@ -1,0 +1,28 @@
+{
+  "name": "@food-ordering-system/payment-application-service",
+  "version": "1.0.0",
+  "description": "Payment Service Application Layer - Application services and use cases",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "payment",
+    "application",
+    "ddd"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "^1.0.0",
+    "@food-ordering-system/payment-domain-core": "^1.0.0",
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/node-cron": "^3.0.11",
+    "typescript": "^5.3.3"
+  }
+}

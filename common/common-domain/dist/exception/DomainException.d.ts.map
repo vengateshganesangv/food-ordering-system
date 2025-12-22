@@ -1,0 +1,1 @@
+{"version":3,"file":"DomainException.d.ts","sourceRoot":"","sources":["../../src/exception/DomainException.ts"],"names":[],"mappings":"AAAA;;GAEG;AACH,qBAAa,eAAgB,SAAQ,KAAK;IACxC,SAAgB,KAAK,CAAC,EAAE,KAAK,CAAC;gBAElB,OAAO,EAAE,MAAM,EAAE,KAAK,CAAC,EAAE,KAAK;CAU3C"}

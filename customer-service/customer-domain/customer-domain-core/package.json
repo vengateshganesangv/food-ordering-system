@@ -1,0 +1,26 @@
+{
+  "name": "@food-ordering-system/customer-domain-core",
+  "version": "1.0.0",
+  "description": "Customer domain core - Contains domain entities, events, and business logic",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "customer",
+    "domain",
+    "ddd"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "file:../../../common/common-domain"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

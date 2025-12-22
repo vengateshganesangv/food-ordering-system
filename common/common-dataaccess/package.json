@@ -1,0 +1,29 @@
+{
+  "name": "@food-ordering-system/common-dataaccess",
+  "version": "1.0.0",
+  "description": "Common data access module with TypeORM entities and repositories",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "rebuild": "npm run clean && npm run build",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "food-ordering-system",
+    "common",
+    "data-access",
+    "typeorm"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typeorm": "^0.3.19",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
+}

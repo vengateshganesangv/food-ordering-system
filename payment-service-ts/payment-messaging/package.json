@@ -1,0 +1,29 @@
+{
+  "name": "@food-ordering-system/payment-messaging",
+  "version": "1.0.0",
+  "description": "Payment Service Messaging Layer - Kafka integration",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "payment",
+    "messaging",
+    "kafka"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "^1.0.0",
+    "@food-ordering-system/common-kafka": "^1.0.0",
+    "@food-ordering-system/payment-domain-core": "^1.0.0",
+    "@food-ordering-system/payment-application-service": "^1.0.0",
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

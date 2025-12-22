@@ -1,0 +1,27 @@
+{
+  "name": "@food-ordering-system/kafka-model",
+  "version": "1.0.0",
+  "description": "Kafka Avro models for the food ordering system",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "kafka",
+    "avro",
+    "models",
+    "food-ordering"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "avsc": "^5.7.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

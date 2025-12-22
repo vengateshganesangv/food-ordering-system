@@ -1,0 +1,41 @@
+server:
+  port: 8182
+
+logging:
+  level:
+    root: DEBUG
+
+payment-service:
+  payment-request-topic-name: payment-request
+  payment-response-topic-name: payment-response
+  outbox-scheduler-fixed-rate: 10000
+  outbox-scheduler-initial-delay: 10000
+
+database:
+  host: localhost
+  port: 5432
+  database: postgres
+  schema: payment
+  username: postgres
+  password: admin
+
+kafka-config:
+  bootstrap-servers:
+    - localhost:19092
+    - localhost:29092
+    - localhost:39092
+  schema-registry-url: http://localhost:8081
+  num-of-partitions: 3
+  replication-factor: 3
+
+kafka-consumer-config:
+  payment-consumer-group-id: payment-topic-consumer
+  auto-offset-reset: earliest
+  batch-listener: true
+  auto-startup: true
+  concurrency-level: 3
+  session-timeout-ms: 10000
+  heartbeat-interval-ms: 3000
+  max-poll-interval-ms: 300000
+  max-poll-records: 500
+  poll-timeout-ms: 150

@@ -1,0 +1,27 @@
+{
+  "name": "@food-ordering-system/customer-application-service",
+  "version": "1.0.0",
+  "description": "Customer application service - Contains application service layer with use cases and ports",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "customer",
+    "application",
+    "service"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "file:../../../common/common-domain",
+    "@food-ordering-system/customer-domain-core": "file:../customer-domain-core"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
