@@ -1,50 +1,38 @@
-# Node.js
-node_modules/
-package-lock.json
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+volumes/
 
-# Build outputs
-dist/
-build/
-*.js
-*.js.map
-*.d.ts
-*.d.ts.map
-!jest.config.js
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# Logs
-logs/
 *.log
 
-# Test coverage
-coverage/
-.nyc_output/
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
+### IntelliJ IDEA ###
+.idea
 *.iws
 *.iml
 *.ipr
 
-# OS
-.DS_Store
-Thumbs.db
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# Temporary files
-tmp/
-temp/
+### VS Code ###
+.vscode/
 
-# Docker volumes
-volumes/
 infrastructure/docker-compose/volumes/**/**
