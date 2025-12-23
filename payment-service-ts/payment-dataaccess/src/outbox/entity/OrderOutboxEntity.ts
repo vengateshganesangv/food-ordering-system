@@ -1,5 +1,6 @@
 import { Entity, PrimaryColumn, Column, VersionColumn } from 'typeorm';
-import { PaymentStatus, OutboxStatus } from '@food-ordering-system/common-domain';
+import { PaymentStatus } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
 
 @Entity('order_outbox')
 export class OrderOutboxEntity {

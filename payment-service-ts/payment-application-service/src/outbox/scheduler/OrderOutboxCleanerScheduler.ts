@@ -1,5 +1,8 @@
-import { OutboxStatus, logger } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
+import { Logger } from '@food-ordering-system/kafka-producer';
 import { OrderOutboxHelper } from './OrderOutboxHelper';
+
+const logger = new Logger('OrderOutboxCleanerScheduler');
 
 export class OrderOutboxCleanerScheduler {
   constructor(private readonly orderOutboxHelper: OrderOutboxHelper) {}

@@ -20,6 +20,7 @@
     "@food-ordering-system/common-domain": "^1.0.0",
     "@food-ordering-system/payment-domain-core": "^1.0.0",
     "@food-ordering-system/payment-application-service": "^1.0.0",
+    "@food-ordering-system/outbox": "^1.0.0",
     "pg": "^8.11.3",
     "typeorm": "^0.3.19"
   },

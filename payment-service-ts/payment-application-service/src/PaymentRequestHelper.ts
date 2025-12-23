@@ -1,4 +1,6 @@
-import { CustomerId, OutboxStatus, PaymentStatus, logger } from '@food-ordering-system/common-domain';
+import { CustomerId, PaymentStatus } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
+import { Logger } from '@food-ordering-system/kafka-producer';
 import {
   PaymentDomainService,
   Payment,
@@ -15,6 +17,8 @@ import { PaymentResponseMessagePublisher } from './ports/output/message/publishe
 import { CreditEntryRepository } from './ports/output/repository/CreditEntryRepository';
 import { CreditHistoryRepository } from './ports/output/repository/CreditHistoryRepository';
 import { PaymentRepository } from './ports/output/repository/PaymentRepository';
+
+const logger = new Logger('PaymentRequestHelper');
 
 export class PaymentRequestHelper {
   constructor(

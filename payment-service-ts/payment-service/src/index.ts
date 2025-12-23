@@ -1,11 +1,12 @@
 import 'reflect-metadata';
 import express from 'express';
 import * as cron from 'node-cron';
-import { container } from 'tsyringe';
 import { ConfigLoader } from './config/ConfigLoader';
 import { DependencyContainer } from './config/DependencyContainer';
-import { logger } from '@food-ordering-system/common-domain';
+import { Logger } from '@food-ordering-system/kafka-producer';
 import { OrderOutboxScheduler, OrderOutboxCleanerScheduler } from '@food-ordering-system/payment-application-service';
+
+const logger = new Logger('PaymentServiceApplication');
 
 async function bootstrap() {
   try {
@@ -26,9 +27,9 @@ async function bootstrap() {
       res.status(200).json({ status: 'UP', service: 'payment-service' });
     });
 
-    // Setup schedulers using node-cron
-    const orderOutboxScheduler = container.resolve<OrderOutboxScheduler>('OrderOutboxScheduler');
-    const orderOutboxCleanerScheduler = container.resolve<OrderOutboxCleanerScheduler>('OrderOutboxCleanerScheduler');
+    // Get schedulers from DependencyContainer
+    const orderOutboxScheduler = DependencyContainer.getOrderOutboxScheduler();
+    const orderOutboxCleanerScheduler = DependencyContainer.getOrderOutboxCleanerScheduler();
 
     // Schedule outbox processor (every 10 seconds based on config)
     const schedulerInterval = Math.floor(config.paymentService.outboxSchedulerFixedRate / 1000);

@@ -1,9 +1,14 @@
-import { PaymentStatus, OutboxStatus, logger, ORDER_SAGA_NAME } from '@food-ordering-system/common-domain';
+import { PaymentStatus } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
+import { ORDER_SAGA_NAME } from '@food-ordering-system/saga';
+import { Logger } from '@food-ordering-system/kafka-producer';
 import { PaymentDomainException } from '@food-ordering-system/payment-domain-core';
 import { OrderEventPayload } from '../model/OrderEventPayload';
 import { OrderOutboxMessage } from '../model/OrderOutboxMessage';
 import { OrderOutboxRepository } from '../../ports/output/repository/OrderOutboxRepository';
 import { v4 as uuidv4 } from 'uuid';
+
+const logger = new Logger('OrderOutboxHelper');
 
 export class OrderOutboxHelper {
   constructor(private readonly orderOutboxRepository: OrderOutboxRepository) {}

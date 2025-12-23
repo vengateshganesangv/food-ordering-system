@@ -1,5 +1,5 @@
-import { logger, PaymentOrderStatus } from '@food-ordering-system/common-domain';
-import { KafkaConsumer } from '@food-ordering-system/common-kafka';
+import { PaymentOrderStatus } from '@food-ordering-system/common-domain';
+import { Logger } from '@food-ordering-system/kafka-producer';
 import {
   PaymentRequestMessageListener,
   PaymentApplicationServiceException
@@ -8,7 +8,9 @@ import { PaymentNotFoundException } from '@food-ordering-system/payment-domain-c
 import { PaymentMessagingDataMapper, PaymentRequestAvroModel } from '../../mapper/PaymentMessagingDataMapper';
 import { EachMessagePayload } from 'kafkajs';
 
-export class PaymentRequestKafkaListener implements KafkaConsumer {
+export class PaymentRequestKafkaListener {
+  private logger = new Logger('PaymentRequestKafkaListener');
+
   constructor(
     private readonly paymentRequestMessageListener: PaymentRequestMessageListener,
     private readonly paymentMessagingDataMapper: PaymentMessagingDataMapper
@@ -20,24 +22,24 @@ export class PaymentRequestKafkaListener implements KafkaConsumer {
     const value = message.value?.toString();
 
     if (!value) {
-      logger.warn('Received empty message');
+      this.logger.warn('Received empty message');
       return;
     }
 
     try {
       const paymentRequestAvroModel: PaymentRequestAvroModel = JSON.parse(value);
 
-      logger.info(
+      this.logger.info(
         `Processing payment request for order id: ${paymentRequestAvroModel.orderId}, key: ${key}, partition: ${partition}`
       );
 
       if (paymentRequestAvroModel.paymentOrderStatus === PaymentOrderStatus.PENDING.toString()) {
-        logger.info(`Processing payment for order id: ${paymentRequestAvroModel.orderId}`);
+        this.logger.info(`Processing payment for order id: ${paymentRequestAvroModel.orderId}`);
         await this.paymentRequestMessageListener.completePayment(
           this.paymentMessagingDataMapper.paymentRequestAvroModelToPaymentRequest(paymentRequestAvroModel)
         );
       } else if (paymentRequestAvroModel.paymentOrderStatus === PaymentOrderStatus.CANCELLED.toString()) {
-        logger.info(`Cancelling payment for order id: ${paymentRequestAvroModel.orderId}`);
+        this.logger.info(`Cancelling payment for order id: ${paymentRequestAvroModel.orderId}`);
         await this.paymentRequestMessageListener.cancelPayment(
           this.paymentMessagingDataMapper.paymentRequestAvroModelToPaymentRequest(paymentRequestAvroModel)
         );
@@ -46,12 +48,12 @@ export class PaymentRequestKafkaListener implements KafkaConsumer {
       if (error instanceof Error) {
         // Check for unique constraint violation (PostgreSQL error code 23505)
         if (error.message.includes('unique constraint') || error.message.includes('23505')) {
-          logger.error(
+          this.logger.error(
             `Caught unique constraint exception in PaymentRequestKafkaListener: ${error.message}`
           );
           // NO-OP for unique constraint exception
         } else if (error instanceof PaymentNotFoundException) {
-          logger.error(`No payment found: ${error.message}`);
+          this.logger.error(`No payment found: ${error.message}`);
           // NO-OP for PaymentNotFoundException
         } else {
           throw new PaymentApplicationServiceException(

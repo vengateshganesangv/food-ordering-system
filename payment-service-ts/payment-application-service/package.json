@@ -19,7 +19,11 @@
   "dependencies": {
     "@food-ordering-system/common-domain": "^1.0.0",
     "@food-ordering-system/payment-domain-core": "^1.0.0",
-    "node-cron": "^3.0.3"
+    "@food-ordering-system/outbox": "^1.0.0",
+    "@food-ordering-system/saga": "^1.0.0",
+    "@food-ordering-system/kafka-producer": "^1.0.0",
+    "node-cron": "^3.0.3",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/node-cron": "^3.0.11",

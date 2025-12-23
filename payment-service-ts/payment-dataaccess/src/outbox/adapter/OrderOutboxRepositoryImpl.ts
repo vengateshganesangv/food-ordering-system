@@ -1,4 +1,5 @@
-import { PaymentStatus, OutboxStatus } from '@food-ordering-system/common-domain';
+import { PaymentStatus } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
 import { OrderOutboxMessage, OrderOutboxRepository } from '@food-ordering-system/payment-application-service';
 import { OrderOutboxJpaRepository } from '../repository/OrderOutboxJpaRepository';
 import { OrderOutboxDataAccessMapper } from '../mapper/OrderOutboxDataAccessMapper';

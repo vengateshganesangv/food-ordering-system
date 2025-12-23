@@ -1,5 +1,5 @@
-import { OutboxStatus, logger } from '@food-ordering-system/common-domain';
-import { KafkaProducer, KafkaMessageHelper } from '@food-ordering-system/common-kafka';
+import { OutboxStatus } from '@food-ordering-system/outbox';
+import { KafkaMessageHelper, Logger } from '@food-ordering-system/kafka-producer';
 import {
   PaymentResponseMessagePublisher,
   OrderOutboxMessage,
@@ -7,11 +7,14 @@ import {
   PaymentServiceConfigData
 } from '@food-ordering-system/payment-application-service';
 import { PaymentMessagingDataMapper, PaymentResponseAvroModel } from '../../mapper/PaymentMessagingDataMapper';
+import { IKafkaProducer } from '@food-ordering-system/kafka-producer';
 
 export class PaymentEventKafkaPublisher implements PaymentResponseMessagePublisher {
+  private logger = new Logger('PaymentEventKafkaPublisher');
+
   constructor(
     private readonly paymentMessagingDataMapper: PaymentMessagingDataMapper,
-    private readonly kafkaProducer: KafkaProducer,
+    private readonly kafkaProducer: IKafkaProducer<string, PaymentResponseAvroModel>,
     private readonly paymentServiceConfigData: PaymentServiceConfigData,
     private readonly kafkaMessageHelper: KafkaMessageHelper
   ) {}
@@ -27,7 +30,7 @@ export class PaymentEventKafkaPublisher implements PaymentResponseMessagePublish
 
     const sagaId = orderOutboxMessage.sagaId;
 
-    logger.info(`Received OrderOutboxMessage for order id: ${orderEventPayload.orderId} and saga id: ${sagaId}`);
+    this.logger.info(`Received OrderOutboxMessage for order id: ${orderEventPayload.orderId} and saga id: ${sagaId}`);
 
     try {
       const paymentResponseAvroModel = this.paymentMessagingDataMapper.orderEventPayloadToPaymentResponseAvroModel(
@@ -49,11 +52,11 @@ export class PaymentEventKafkaPublisher implements PaymentResponseMessagePublish
         )
       );
 
-      logger.info(
+      this.logger.info(
         `PaymentResponseAvroModel sent to kafka for order id: ${paymentResponseAvroModel.orderId} and saga id: ${sagaId}`
       );
     } catch (error) {
-      logger.error(
+      this.logger.error(
         `Error while sending PaymentResponseAvroModel message to kafka with order id: ${orderEventPayload.orderId} and saga id: ${sagaId}, error: ${error}`
       );
     }

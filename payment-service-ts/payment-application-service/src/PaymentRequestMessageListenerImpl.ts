@@ -1,7 +1,9 @@
-import { logger } from '@food-ordering-system/common-domain';
+import { Logger } from '@food-ordering-system/kafka-producer';
 import { PaymentRequestMessageListener } from './ports/input/message/listener/PaymentRequestMessageListener';
 import { PaymentRequest } from './dto/PaymentRequest';
 import { PaymentRequestHelper } from './PaymentRequestHelper';
+
+const logger = new Logger('PaymentRequestMessageListenerImpl');
 
 export class PaymentRequestMessageListenerImpl implements PaymentRequestMessageListener {
   constructor(private readonly paymentRequestHelper: PaymentRequestHelper) {}

@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-import { container } from 'tsyringe';
 import { DataSource } from 'typeorm';
 import { Kafka, Consumer, Producer } from 'kafkajs';
 import { ConfigLoader } from './ConfigLoader';
@@ -51,9 +50,12 @@ import {
   PaymentMessagingDataMapper
 } from '@food-ordering-system/payment-messaging';
 
-import { KafkaProducer, KafkaMessageHelper } from '@food-ordering-system/common-kafka';
+import { KafkaProducerImpl, KafkaMessageHelper } from '@food-ordering-system/kafka-producer';
 
 export class DependencyContainer {
+  private static orderOutboxScheduler: OrderOutboxScheduler;
+  private static orderOutboxCleanerScheduler: OrderOutboxCleanerScheduler;
+
   public static async setup(): Promise<void> {
     const config = ConfigLoader.getConfig();
 
@@ -64,7 +66,6 @@ export class DependencyContainer {
       config.paymentService.outboxSchedulerFixedRate,
       config.paymentService.outboxSchedulerInitialDelay
     );
-    container.registerInstance('PaymentServiceConfigData', paymentServiceConfig);
 
     // Setup DataSource
     const dataSource = new DataSource({
@@ -81,7 +82,6 @@ export class DependencyContainer {
     });
 
     await dataSource.initialize();
-    container.registerInstance(DataSource, dataSource);
 
     // Register repositories
     const paymentJpaRepository = dataSource.getRepository(PaymentEntity).extend(PaymentJpaRepository.prototype);
@@ -119,14 +119,8 @@ export class DependencyContainer {
       orderOutboxDataAccessMapper
     );
 
-    container.registerInstance<PaymentRepository>('PaymentRepository', paymentRepository);
-    container.registerInstance<CreditEntryRepository>('CreditEntryRepository', creditEntryRepository);
-    container.registerInstance<CreditHistoryRepository>('CreditHistoryRepository', creditHistoryRepository);
-    container.registerInstance<OrderOutboxRepository>('OrderOutboxRepository', orderOutboxRepository);
-
     // Register domain service
     const paymentDomainService: PaymentDomainService = new PaymentDomainServiceImpl();
-    container.registerInstance<PaymentDomainService>('PaymentDomainService', paymentDomainService);
 
     // Register application service components
     const paymentDataMapper = new PaymentDataMapper();
@@ -138,10 +132,7 @@ export class DependencyContainer {
       brokers: config.kafkaConfig.bootstrapServers
     });
 
-    const producer = kafka.producer();
-    await producer.connect();
-
-    const kafkaProducer = new KafkaProducer(producer);
+    const kafkaProducer = new KafkaProducerImpl(kafka);
     const kafkaMessageHelper = new KafkaMessageHelper();
 
     const paymentMessagingDataMapper = new PaymentMessagingDataMapper();
@@ -167,15 +158,9 @@ export class DependencyContainer {
       paymentRequestHelper
     );
 
-    const orderOutboxScheduler = new OrderOutboxScheduler(orderOutboxHelper, paymentResponseMessagePublisher);
-    const orderOutboxCleanerScheduler = new OrderOutboxCleanerScheduler(orderOutboxHelper);
-
-    container.registerInstance<PaymentRequestMessageListener>(
-      'PaymentRequestMessageListener',
-      paymentRequestMessageListener
-    );
-    container.registerInstance('OrderOutboxScheduler', orderOutboxScheduler);
-    container.registerInstance('OrderOutboxCleanerScheduler', orderOutboxCleanerScheduler);
+    // Store schedulers as class properties
+    this.orderOutboxScheduler = new OrderOutboxScheduler(orderOutboxHelper, paymentResponseMessagePublisher);
+    this.orderOutboxCleanerScheduler = new OrderOutboxCleanerScheduler(orderOutboxHelper);
 
     // Setup Kafka consumer
     const consumer = kafka.consumer({
@@ -198,7 +183,13 @@ export class DependencyContainer {
         await paymentRequestKafkaListener.consume(payload);
       }
     });
+  }
 
-    container.registerInstance('KafkaConsumer', consumer);
+  public static getOrderOutboxScheduler(): OrderOutboxScheduler {
+    return this.orderOutboxScheduler;
+  }
+
+  public static getOrderOutboxCleanerScheduler(): OrderOutboxCleanerScheduler {
+    return this.orderOutboxCleanerScheduler;
   }
 }

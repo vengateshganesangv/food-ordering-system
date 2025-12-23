@@ -1,0 +1,32 @@
+{
+  "name": "@food-ordering-system/payment-application-service",
+  "version": "1.0.0",
+  "description": "Payment application service - Contains application service layer with use cases, ports, and outbox pattern",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "payment",
+    "application",
+    "service",
+    "outbox"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "file:../../../common/common-domain",
+    "@food-ordering-system/payment-domain-core": "file:../payment-domain-core",
+    "@food-ordering-system/outbox": "file:../../../infrastructure/outbox",
+    "@food-ordering-system/saga": "file:../../../infrastructure/saga",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,7 +1,10 @@
-import { OutboxStatus, logger } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
+import { Logger } from '@food-ordering-system/kafka-producer';
 import { OrderOutboxMessage } from '../model/OrderOutboxMessage';
 import { PaymentResponseMessagePublisher } from '../../ports/output/message/publisher/PaymentResponseMessagePublisher';
 import { OrderOutboxHelper } from './OrderOutboxHelper';
+
+const logger = new Logger('OrderOutboxScheduler');
 
 export class OrderOutboxScheduler {
   constructor(

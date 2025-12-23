@@ -19,7 +19,8 @@
   "license": "ISC",
   "dependencies": {
     "@food-ordering-system/common-domain": "^1.0.0",
-    "@food-ordering-system/common-kafka": "^1.0.0",
+    "@food-ordering-system/outbox": "^1.0.0",
+    "@food-ordering-system/kafka-producer": "^1.0.0",
     "@food-ordering-system/payment-domain-core": "^1.0.0",
     "@food-ordering-system/payment-application-service": "^1.0.0",
     "@food-ordering-system/payment-dataaccess": "^1.0.0",
@@ -30,7 +31,6 @@
     "node-cron": "^3.0.3",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.14",
-    "tsyringe": "^4.8.0",
     "typeorm": "^0.3.19",
     "uuid": "^9.0.1"
   },

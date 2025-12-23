@@ -1,4 +1,5 @@
-import { PaymentStatus, OutboxStatus } from '@food-ordering-system/common-domain';
+import { PaymentStatus } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
 
 export class OrderOutboxMessage {
   constructor(
@@ -13,6 +14,22 @@ export class OrderOutboxMessage {
     public version: number
   ) {}
 
+  public getId(): string {
+    return this.id;
+  }
+
+  public getSagaId(): string {
+    return this.sagaId;
+  }
+
+  public getPayload(): string {
+    return this.payload;
+  }
+
+  public getOutboxStatus(): OutboxStatus {
+    return this.outboxStatus;
+  }
+
   public setOutboxStatus(outboxStatus: OutboxStatus): void {
     this.outboxStatus = outboxStatus;
   }
@@ -22,7 +39,7 @@ export class OrderOutboxMessage {
   }
 }
 
-class OrderOutboxMessageBuilder {
+export class OrderOutboxMessageBuilder {
   private id?: string;
   private sagaId?: string;
   private createdAt?: Date;
