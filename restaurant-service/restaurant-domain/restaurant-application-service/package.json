@@ -1,0 +1,25 @@
+{
+  "name": "@food-ordering-system/restaurant-application-service",
+  "version": "1.0.0",
+  "description": "Restaurant Service Application Service Layer",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "@food-ordering-system/common-domain": "*",
+    "@food-ordering-system/restaurant-domain-core": "*",
+    "@food-ordering-system/outbox": "*",
+    "@food-ordering-system/saga": "*",
+    "@food-ordering-system/kafka-producer": "*",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/uuid": "^9.0.7",
+    "typescript": "^5.3.2"
+  }
+}
