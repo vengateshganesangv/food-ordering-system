@@ -1,0 +1,34 @@
+{
+  "name": "@food-ordering-system/restaurant-messaging",
+  "version": "1.0.0",
+  "description": "Restaurant Service Messaging Layer - Kafka consumers and producers",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "restaurant",
+    "messaging",
+    "kafka"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "^1.0.0",
+    "@food-ordering-system/restaurant-domain-core": "^1.0.0",
+    "@food-ordering-system/restaurant-application-service": "^1.0.0",
+    "@food-ordering-system/kafka-consumer": "^1.0.0",
+    "@food-ordering-system/kafka-producer": "^1.0.0",
+    "@food-ordering-system/kafka-model": "^1.0.0",
+    "@food-ordering-system/outbox": "^1.0.0",
+    "avsc": "^5.7.7",
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3.3"
+  }
+}

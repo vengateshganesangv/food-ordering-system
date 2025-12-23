@@ -1,0 +1,46 @@
+{
+  "name": "@food-ordering-system/restaurant-service",
+  "version": "1.0.0",
+  "description": "Restaurant Service - Main application container",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "restaurant",
+    "microservice"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "^1.0.0",
+    "@food-ordering-system/common-dataaccess": "^1.0.0",
+    "@food-ordering-system/restaurant-domain-core": "^1.0.0",
+    "@food-ordering-system/restaurant-application-service": "^1.0.0",
+    "@food-ordering-system/restaurant-dataaccess": "^1.0.0",
+    "@food-ordering-system/restaurant-messaging": "^1.0.0",
+    "@food-ordering-system/kafka-consumer": "^1.0.0",
+    "@food-ordering-system/kafka-producer": "^1.0.0",
+    "@food-ordering-system/kafka-model": "^1.0.0",
+    "@food-ordering-system/outbox": "^1.0.0",
+    "express": "^4.18.2",
+    "kafkajs": "^2.2.4",
+    "node-cron": "^3.0.3",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.1.14",
+    "typeorm": "^0.3.19",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.6",
+    "@types/node-cron": "^3.0.11",
+    "@types/pg": "^8.10.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
