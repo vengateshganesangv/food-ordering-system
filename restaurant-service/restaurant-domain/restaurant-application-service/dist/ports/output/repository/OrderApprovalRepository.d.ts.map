@@ -1,0 +1,1 @@
+{"version":3,"file":"OrderApprovalRepository.d.ts","sourceRoot":"","sources":["../../../../src/ports/output/repository/OrderApprovalRepository.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,6DAA6D,CAAC;AAE5F;;;GAGG;AACH,MAAM,WAAW,uBAAuB;IACtC;;;;OAIG;IACH,IAAI,CAAC,aAAa,EAAE,aAAa,GAAG,OAAO,CAAC,aAAa,CAAC,CAAC;CAC5D"}

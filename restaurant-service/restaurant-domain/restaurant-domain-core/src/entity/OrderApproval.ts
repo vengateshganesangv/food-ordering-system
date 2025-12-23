@@ -6,7 +6,7 @@ export class OrderApproval extends BaseEntity<OrderApprovalId> {
   private readonly orderId: OrderId;
   private readonly approvalStatus: OrderApprovalStatus;
 
-  private constructor(
+  constructor(
     orderApprovalId: OrderApprovalId,
     restaurantId: RestaurantId,
     orderId: OrderId,
@@ -37,40 +37,40 @@ export class OrderApproval extends BaseEntity<OrderApprovalId> {
 }
 
 class OrderApprovalBuilder {
-  private orderApprovalId?: OrderApprovalId;
-  private restaurantId?: RestaurantId;
-  private orderId?: OrderId;
-  private approvalStatus?: OrderApprovalStatus;
+  private _orderApprovalId?: OrderApprovalId;
+  private _restaurantId?: RestaurantId;
+  private _orderId?: OrderId;
+  private _approvalStatus?: OrderApprovalStatus;
 
   orderApprovalId(val: OrderApprovalId): this {
-    this.orderApprovalId = val;
+    this._orderApprovalId = val;
     return this;
   }
 
   restaurantId(val: RestaurantId): this {
-    this.restaurantId = val;
+    this._restaurantId = val;
     return this;
   }
 
   orderId(val: OrderId): this {
-    this.orderId = val;
+    this._orderId = val;
     return this;
   }
 
   approvalStatus(val: OrderApprovalStatus): this {
-    this.approvalStatus = val;
+    this._approvalStatus = val;
     return this;
   }
 
   build(): OrderApproval {
-    if (!this.orderApprovalId || !this.restaurantId || !this.orderId || !this.approvalStatus) {
+    if (!this._orderApprovalId || !this._restaurantId || !this._orderId || !this._approvalStatus) {
       throw new Error('Missing required fields for OrderApproval');
     }
     return new OrderApproval(
-      this.orderApprovalId,
-      this.restaurantId,
-      this.orderId,
-      this.approvalStatus
+      this._orderApprovalId,
+      this._restaurantId,
+      this._orderId,
+      this._approvalStatus
     );
   }
 }

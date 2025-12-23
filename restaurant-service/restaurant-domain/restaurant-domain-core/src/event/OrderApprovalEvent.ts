@@ -2,6 +2,7 @@ import { DomainEvent, RestaurantId } from '@food-ordering-system/common-domain';
 import { OrderApproval } from '../entity/OrderApproval';
 
 export abstract class OrderApprovalEvent implements DomainEvent<OrderApproval> {
+  _phantom?: OrderApproval;
   private readonly orderApproval: OrderApproval;
   private readonly restaurantId: RestaurantId;
   private readonly failureMessages: string[];

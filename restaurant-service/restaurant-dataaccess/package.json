@@ -1,0 +1,32 @@
+{
+  "name": "@food-ordering-system/restaurant-dataaccess",
+  "version": "1.0.0",
+  "description": "Restaurant Service Data Access Layer - Database operations and TypeORM entities",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "restaurant",
+    "dataaccess",
+    "typeorm"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "^1.0.0",
+    "@food-ordering-system/common-dataaccess": "^1.0.0",
+    "@food-ordering-system/restaurant-domain-core": "^1.0.0",
+    "@food-ordering-system/restaurant-application-service": "^1.0.0",
+    "@food-ordering-system/outbox": "^1.0.0",
+    "pg": "^8.11.3",
+    "typeorm": "^0.3.19"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.10.9",
+    "typescript": "^5.3.3"
+  }
+}

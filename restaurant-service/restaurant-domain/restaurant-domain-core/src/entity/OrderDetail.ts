@@ -6,7 +6,7 @@ export class OrderDetail extends BaseEntity<OrderId> {
   private totalAmount: Money;
   private readonly products: Product[];
 
-  private constructor(
+  constructor(
     orderId: OrderId,
     orderStatus: OrderStatus,
     totalAmount: Money,
@@ -37,35 +37,35 @@ export class OrderDetail extends BaseEntity<OrderId> {
 }
 
 class OrderDetailBuilder {
-  private orderId?: OrderId;
-  private orderStatus?: OrderStatus;
-  private totalAmount?: Money;
-  private products?: Product[];
+  private _orderId?: OrderId;
+  private _orderStatus?: OrderStatus;
+  private _totalAmount?: Money;
+  private _products?: Product[];
 
   orderId(val: OrderId): this {
-    this.orderId = val;
+    this._orderId = val;
     return this;
   }
 
   orderStatus(val: OrderStatus): this {
-    this.orderStatus = val;
+    this._orderStatus = val;
     return this;
   }
 
   totalAmount(val: Money): this {
-    this.totalAmount = val;
+    this._totalAmount = val;
     return this;
   }
 
   products(val: Product[]): this {
-    this.products = val;
+    this._products = val;
     return this;
   }
 
   build(): OrderDetail {
-    if (!this.orderId || !this.orderStatus || !this.totalAmount || !this.products) {
+    if (!this._orderId || !this._orderStatus || !this._totalAmount || !this._products) {
       throw new Error('Missing required fields for OrderDetail');
     }
-    return new OrderDetail(this.orderId, this.orderStatus, this.totalAmount, this.products);
+    return new OrderDetail(this._orderId, this._orderStatus, this._totalAmount, this._products);
   }
 }

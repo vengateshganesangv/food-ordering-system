@@ -59,15 +59,15 @@ export class OrderOutboxMessage {
   }
 
   static Builder = class {
-    private _id?: string;
-    private _sagaId?: string;
-    private _createdAt?: Date;
-    private _processedAt: Date | null = null;
-    private _type?: string;
-    private _payload?: string;
-    private _outboxStatus?: OutboxStatus;
-    private _approvalStatus?: OrderApprovalStatus;
-    private _version: number = 0;
+    public _id?: string;
+    public _sagaId?: string;
+    public _createdAt?: Date;
+    public _processedAt: Date | null = null;
+    public _type?: string;
+    public _payload?: string;
+    public _outboxStatus?: OutboxStatus;
+    public _approvalStatus?: OrderApprovalStatus;
+    public _version: number = 0;
 
     id(value: string): this {
       this._id = value;

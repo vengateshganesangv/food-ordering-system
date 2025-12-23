@@ -9,7 +9,7 @@ export class Restaurant extends AggregateRoot<RestaurantId> {
   private active: boolean;
   private readonly orderDetail: OrderDetail;
 
-  private constructor(
+  constructor(
     restaurantId: RestaurantId,
     orderApproval: OrderApproval | undefined,
     active: boolean,
@@ -76,35 +76,35 @@ export class Restaurant extends AggregateRoot<RestaurantId> {
 }
 
 class RestaurantBuilder {
-  private restaurantId?: RestaurantId;
-  private orderApproval?: OrderApproval;
-  private active: boolean = false;
-  private orderDetail?: OrderDetail;
+  private _restaurantId?: RestaurantId;
+  private _orderApproval?: OrderApproval;
+  private _active: boolean = false;
+  private _orderDetail?: OrderDetail;
 
   restaurantId(val: RestaurantId): this {
-    this.restaurantId = val;
+    this._restaurantId = val;
     return this;
   }
 
   orderApproval(val: OrderApproval): this {
-    this.orderApproval = val;
+    this._orderApproval = val;
     return this;
   }
 
   active(val: boolean): this {
-    this.active = val;
+    this._active = val;
     return this;
   }
 
   orderDetail(val: OrderDetail): this {
-    this.orderDetail = val;
+    this._orderDetail = val;
     return this;
   }
 
   build(): Restaurant {
-    if (!this.restaurantId || !this.orderDetail) {
+    if (!this._restaurantId || !this._orderDetail) {
       throw new Error('Missing required fields for Restaurant');
     }
-    return new Restaurant(this.restaurantId, this.orderApproval, this.active, this.orderDetail);
+    return new Restaurant(this._restaurantId, this._orderApproval, this._active, this._orderDetail);
   }
 }

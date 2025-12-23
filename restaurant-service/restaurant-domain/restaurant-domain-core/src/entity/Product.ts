@@ -6,7 +6,7 @@ export class Product extends BaseEntity<ProductId> {
   private readonly quantity: number;
   private available: boolean;
 
-  private constructor(
+  constructor(
     productId: ProductId,
     name: string | undefined,
     price: Money | undefined,
@@ -49,41 +49,41 @@ export class Product extends BaseEntity<ProductId> {
 }
 
 class ProductBuilder {
-  private productId?: ProductId;
-  private name?: string;
-  private price?: Money;
-  private quantity?: number;
-  private available: boolean = false;
+  private _productId?: ProductId;
+  private _name?: string;
+  private _price?: Money;
+  private _quantity?: number;
+  private _available: boolean = false;
 
   productId(val: ProductId): this {
-    this.productId = val;
+    this._productId = val;
     return this;
   }
 
   name(val: string): this {
-    this.name = val;
+    this._name = val;
     return this;
   }
 
   price(val: Money): this {
-    this.price = val;
+    this._price = val;
     return this;
   }
 
   quantity(val: number): this {
-    this.quantity = val;
+    this._quantity = val;
     return this;
   }
 
   available(val: boolean): this {
-    this.available = val;
+    this._available = val;
     return this;
   }
 
   build(): Product {
-    if (!this.productId || this.quantity === undefined) {
+    if (!this._productId || this._quantity === undefined) {
       throw new Error('Missing required fields for Product');
     }
-    return new Product(this.productId, this.name, this.price, this.quantity, this.available);
+    return new Product(this._productId, this._name, this._price, this._quantity, this._available);
   }
 }
