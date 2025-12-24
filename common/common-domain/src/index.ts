@@ -1,5 +1,5 @@
 // Domain constants
-export { DomainConstants } from './DomainConstants';
+export { DomainConstants, ORDER_SAGA_NAME } from './DomainConstants';
 
 // Entity exports
 export { BaseEntity, AggregateRoot } from './entity';
@@ -24,3 +24,7 @@ export {
   RestaurantId,
   RestaurantOrderStatus,
 } from './valueobject';
+
+// Infrastructure pattern exports (re-exported for convenience)
+export { OutboxStatus } from '@food-ordering-system/outbox';
+export { SagaStatus, SagaStep } from '@food-ordering-system/saga';

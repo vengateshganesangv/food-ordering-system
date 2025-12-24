@@ -31,7 +31,7 @@ export class OrderApprovalEventKafkaPublisher implements RestaurantApprovalReque
     const sagaId = orderApprovalOutboxMessage.getSagaId();
 
     OrderApprovalEventKafkaPublisher.logger.info(
-      `Received OrderApprovalOutboxMessage for order id: ${orderApprovalEventPayload.getOrderId()} and saga id: ${sagaId}`,
+      `Received OrderApprovalOutboxMessage for order id: ${orderApprovalEventPayload.orderId} and saga id: ${sagaId}`,
     );
 
     try {
@@ -42,15 +42,15 @@ export class OrderApprovalEventKafkaPublisher implements RestaurantApprovalReque
         );
 
       await this.kafkaProducer.send(
-        this.orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
+        this.orderServiceConfigData.restaurantApprovalRequestTopicName,
         sagaId,
         restaurantApprovalRequestAvroModel,
         this.kafkaMessageHelper.getKafkaCallback(
-          this.orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
+          this.orderServiceConfigData.restaurantApprovalRequestTopicName,
           restaurantApprovalRequestAvroModel,
           orderApprovalOutboxMessage,
           outboxCallback,
-          orderApprovalEventPayload.getOrderId(),
+          orderApprovalEventPayload.orderId,
           'RestaurantApprovalRequestAvroModel',
         ),
       );
@@ -60,7 +60,7 @@ export class OrderApprovalEventKafkaPublisher implements RestaurantApprovalReque
       );
     } catch (e) {
       OrderApprovalEventKafkaPublisher.logger.error(
-        `Error while sending OrderApprovalEventPayload to kafka for order id: ${orderApprovalEventPayload.getOrderId()} and saga id: ${sagaId}, error: ${(e as Error).message}`,
+        `Error while sending OrderApprovalEventPayload to kafka for order id: ${orderApprovalEventPayload.orderId} and saga id: ${sagaId}, error: ${(e as Error).message}`,
       );
     }
   }

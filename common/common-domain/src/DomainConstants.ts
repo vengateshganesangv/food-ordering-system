@@ -8,3 +8,8 @@ export class DomainConstants {
 
   public static readonly UTC = 'UTC';
 }
+
+/**
+ * Saga name constant for order service
+ */
+export const ORDER_SAGA_NAME = 'OrderProcessingSaga';

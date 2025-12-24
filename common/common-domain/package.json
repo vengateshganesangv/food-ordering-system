@@ -17,6 +17,10 @@
   ],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/outbox": "^1.0.0",
+    "@food-ordering-system/saga": "^1.0.0"
+  },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0"

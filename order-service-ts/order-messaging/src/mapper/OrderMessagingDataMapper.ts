@@ -60,11 +60,11 @@ export class OrderMessagingDataMapper {
     return {
       id: uuidv4(),
       sagaId,
-      customerId: orderPaymentEventPayload.getCustomerId(),
-      orderId: orderPaymentEventPayload.getOrderId(),
-      price: orderPaymentEventPayload.getPrice(),
-      createdAt: orderPaymentEventPayload.getCreatedAt().toISOString(),
-      paymentOrderStatus: orderPaymentEventPayload.getPaymentOrderStatus() as PaymentOrderStatus,
+      customerId: orderPaymentEventPayload.customerId,
+      orderId: orderPaymentEventPayload.orderId,
+      price: orderPaymentEventPayload.price.toString(),
+      createdAt: orderPaymentEventPayload.createdAt.getTime(),
+      paymentOrderStatus: orderPaymentEventPayload.paymentOrderStatus as PaymentOrderStatus,
     };
   }
 
@@ -75,15 +75,15 @@ export class OrderMessagingDataMapper {
     return {
       id: uuidv4(),
       sagaId,
-      orderId: orderApprovalEventPayload.getOrderId(),
-      restaurantId: orderApprovalEventPayload.getRestaurantId(),
-      restaurantOrderStatus: orderApprovalEventPayload.getRestaurantOrderStatus() as RestaurantOrderStatus,
-      products: orderApprovalEventPayload.getProducts().map((product) => ({
-        id: product.getId(),
-        quantity: product.getQuantity(),
+      orderId: orderApprovalEventPayload.orderId,
+      restaurantId: orderApprovalEventPayload.restaurantId,
+      restaurantOrderStatus: orderApprovalEventPayload.restaurantOrderStatus as RestaurantOrderStatus,
+      products: orderApprovalEventPayload.products.map((product: any) => ({
+        id: product.id,
+        quantity: product.quantity,
       })) as Product[],
-      price: orderApprovalEventPayload.getPrice(),
-      createdAt: orderApprovalEventPayload.getCreatedAt().toISOString(),
+      price: orderApprovalEventPayload.price.toString(),
+      createdAt: orderApprovalEventPayload.createdAt.getTime(),
     };
   }
 

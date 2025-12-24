@@ -31,7 +31,7 @@ export class OrderPaymentEventKafkaPublisher implements PaymentRequestMessagePub
     const sagaId = orderPaymentOutboxMessage.getSagaId();
 
     OrderPaymentEventKafkaPublisher.logger.info(
-      `Received OrderPaymentOutboxMessage for order id: ${orderPaymentEventPayload.getOrderId()} and saga id: ${sagaId}`,
+      `Received OrderPaymentOutboxMessage for order id: ${orderPaymentEventPayload.orderId} and saga id: ${sagaId}`,
     );
 
     try {
@@ -41,25 +41,25 @@ export class OrderPaymentEventKafkaPublisher implements PaymentRequestMessagePub
       );
 
       await this.kafkaProducer.send(
-        this.orderServiceConfigData.getPaymentRequestTopicName(),
+        this.orderServiceConfigData.paymentRequestTopicName,
         sagaId,
         paymentRequestAvroModel,
         this.kafkaMessageHelper.getKafkaCallback(
-          this.orderServiceConfigData.getPaymentRequestTopicName(),
+          this.orderServiceConfigData.paymentRequestTopicName,
           paymentRequestAvroModel,
           orderPaymentOutboxMessage,
           outboxCallback,
-          orderPaymentEventPayload.getOrderId(),
+          orderPaymentEventPayload.orderId,
           'PaymentRequestAvroModel',
         ),
       );
 
       OrderPaymentEventKafkaPublisher.logger.info(
-        `OrderPaymentEventPayload sent to Kafka for order id: ${orderPaymentEventPayload.getOrderId()} and saga id: ${sagaId}`,
+        `OrderPaymentEventPayload sent to Kafka for order id: ${orderPaymentEventPayload.orderId} and saga id: ${sagaId}`,
       );
     } catch (e) {
       OrderPaymentEventKafkaPublisher.logger.error(
-        `Error while sending OrderPaymentEventPayload to kafka with order id: ${orderPaymentEventPayload.getOrderId()} and saga id: ${sagaId}, error: ${(e as Error).message}`,
+        `Error while sending OrderPaymentEventPayload to kafka with order id: ${orderPaymentEventPayload.orderId} and saga id: ${sagaId}, error: ${(e as Error).message}`,
       );
     }
   }
