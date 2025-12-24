@@ -1,0 +1,58 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+LICENSE
+CONVERSION_SUMMARY.md
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Dependencies (will be installed in container)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build outputs (will be built in container)
+dist/
+build/
+*.tsbuildinfo
+
+# Tests
+*.test.ts
+*.spec.ts
+__tests__/
+test/
+coverage/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
+# Logs
+logs/
+*.log
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
