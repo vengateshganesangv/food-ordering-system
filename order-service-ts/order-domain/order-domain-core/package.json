@@ -1,0 +1,27 @@
+{
+  "name": "@food-ordering-system/order-domain-core",
+  "version": "1.0.0",
+  "description": "Order Service Domain Core - Domain entities, value objects, and business logic",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "order",
+    "domain",
+    "ddd"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "^1.0.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.7",
+    "typescript": "^5.3.3"
+  }
+}
