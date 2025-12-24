@@ -1,1 +1,0 @@
-{"version":3,"file":"RestaurantServiceConfigData.d.ts","sourceRoot":"","sources":["../../src/config/RestaurantServiceConfigData.ts"],"names":[],"mappings":"AAAA;;;GAGG;AACH,MAAM,WAAW,2BAA2B;IAC1C,kCAAkC,EAAE,MAAM,CAAC;IAC3C,mCAAmC,EAAE,MAAM,CAAC;CAC7C;AAED;;GAEG;AACH,wBAAgB,iCAAiC,CAAC,MAAM,EAAE,GAAG,GAAG,2BAA2B,CAW1F"}

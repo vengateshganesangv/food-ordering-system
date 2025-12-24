@@ -1,1 +1,0 @@
-{"version":3,"file":"PaymentFailedEvent.js","sourceRoot":"","sources":["../../src/event/PaymentFailedEvent.ts"],"names":[],"mappings":";;;AACA,iDAA8C;AAE9C,MAAa,kBAAmB,SAAQ,2BAAY;IAClD,YAAY,OAAgB,EAAE,SAAe,EAAE,eAAyB;QACtE,KAAK,CAAC,OAAO,EAAE,SAAS,EAAE,eAAe,CAAC,CAAC;IAC7C,CAAC;CACF;AAJD,gDAIC"}
