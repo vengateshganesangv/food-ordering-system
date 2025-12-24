@@ -1,0 +1,35 @@
+{
+  "name": "@food-ordering-system/order-application-service",
+  "version": "1.0.0",
+  "description": "Order Service Application Layer - Application services and use cases",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "order",
+    "application",
+    "ddd",
+    "saga"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@food-ordering-system/common-domain": "^1.0.0",
+    "@food-ordering-system/common-application": "^1.0.0",
+    "@food-ordering-system/order-domain-core": "^1.0.0",
+    "@food-ordering-system/outbox": "^1.0.0",
+    "@food-ordering-system/saga": "^1.0.0",
+    "@food-ordering-system/kafka-producer": "^1.0.0",
+    "node-cron": "^3.0.3",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node-cron": "^3.0.11",
+    "@types/uuid": "^9.0.0",
+    "typescript": "^5.3.3"
+  }
+}
