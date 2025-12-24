@@ -6,6 +6,7 @@ import { Customer } from '../entity/Customer';
  * This event is fired when a new customer is successfully created
  */
 export class CustomerCreatedEvent implements DomainEvent<Customer> {
+  _phantom?: Customer;
   private readonly customer: Customer;
   private readonly createdAt: Date;
 

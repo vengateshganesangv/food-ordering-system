@@ -15,7 +15,7 @@ export class CustomerDomainServiceImpl implements CustomerDomainService {
    */
   validateAndInitiateCustomer(customer: Customer): CustomerCreatedEvent {
     // Any Business logic required to run for a customer creation
-    console.log(`Customer with id: ${customer.getId().getValue()} is initiated`);
+    console.log(`Customer with id: ${customer.getId()!.getValue()} is initiated`);
     return new CustomerCreatedEvent(customer, new Date());
   }
 }
