@@ -1,14 +1,14 @@
-import { KafkaConsumer } from '@food-ordering-system/kafka-consumer';
+import { IKafkaConsumer } from '@food-ordering-system/kafka-consumer';
 import { RestaurantApprovalResponseAvroModel } from '@food-ordering-system/kafka-model';
 import { RestaurantApprovalResponseMessageListener } from '@food-ordering-system/order-application-service';
 import { OrderMessagingDataMapper } from '../../mapper/OrderMessagingDataMapper';
-import { Logger } from '@food-ordering-system/common-domain';
+import { Logger } from '@food-ordering-system/kafka-producer';
 import { EachMessagePayload } from 'kafkajs';
 
 const FAILURE_MESSAGE_DELIMITER = ',';
 
 export class RestaurantApprovalResponseKafkaListener
-  implements KafkaConsumer<RestaurantApprovalResponseAvroModel>
+  implements IKafkaConsumer<RestaurantApprovalResponseAvroModel>
 {
   private static readonly logger = new Logger('RestaurantApprovalResponseKafkaListener');
 

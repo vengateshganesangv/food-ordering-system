@@ -1,11 +1,11 @@
-import { KafkaConsumer } from '@food-ordering-system/kafka-consumer';
+import { IKafkaConsumer } from '@food-ordering-system/kafka-consumer';
 import { CustomerAvroModel } from '@food-ordering-system/kafka-model';
 import { CustomerMessageListener } from '@food-ordering-system/order-application-service';
 import { OrderMessagingDataMapper } from '../../mapper/OrderMessagingDataMapper';
 import { Logger } from '@food-ordering-system/common-domain';
 import { EachMessagePayload } from 'kafkajs';
 
-export class CustomerKafkaListener implements KafkaConsumer<CustomerAvroModel> {
+export class CustomerKafkaListener implements IKafkaConsumer<CustomerAvroModel> {
   private static readonly logger = new Logger('CustomerKafkaListener');
 
   constructor(

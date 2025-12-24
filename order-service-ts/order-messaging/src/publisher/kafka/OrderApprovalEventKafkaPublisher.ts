@@ -4,18 +4,17 @@ import {
   OrderServiceConfigData,
   OrderApprovalEventPayload,
 } from '@food-ordering-system/order-application-service';
-import { KafkaProducer, KafkaMessageHelper } from '@food-ordering-system/kafka-producer';
+import { IKafkaProducer, KafkaMessageHelper, Logger } from '@food-ordering-system/kafka-producer';
 import { RestaurantApprovalRequestAvroModel } from '@food-ordering-system/kafka-model';
 import { OutboxStatus } from '@food-ordering-system/outbox';
 import { OrderMessagingDataMapper } from '../../mapper/OrderMessagingDataMapper';
-import { Logger } from '@food-ordering-system/common-domain';
 
 export class OrderApprovalEventKafkaPublisher implements RestaurantApprovalRequestMessagePublisher {
   private static readonly logger = new Logger('OrderApprovalEventKafkaPublisher');
 
   constructor(
     private orderMessagingDataMapper: OrderMessagingDataMapper,
-    private kafkaProducer: KafkaProducer<string, RestaurantApprovalRequestAvroModel>,
+    private kafkaProducer: IKafkaProducer<string, RestaurantApprovalRequestAvroModel>,
     private orderServiceConfigData: OrderServiceConfigData,
     private kafkaMessageHelper: KafkaMessageHelper,
   ) {}
