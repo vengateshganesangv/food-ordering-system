@@ -1,0 +1,26 @@
+{
+  "name": "@food-ordering-system/order-messaging",
+  "version": "1.0.0",
+  "description": "Order Service Messaging Layer",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@food-ordering-system/common-domain": "^1.0.0",
+    "@food-ordering-system/order-domain-core": "^1.0.0",
+    "@food-ordering-system/order-application-service": "^1.0.0",
+    "@food-ordering-system/kafka-producer": "^1.0.0",
+    "@food-ordering-system/kafka-consumer": "^1.0.0",
+    "@food-ordering-system/kafka-model": "^1.0.0",
+    "kafkajs": "^2.2.4",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/uuid": "^9.0.7",
+    "typescript": "^5.3.2"
+  }
+}
