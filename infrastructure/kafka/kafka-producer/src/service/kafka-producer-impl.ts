@@ -65,12 +65,7 @@ export class KafkaProducerImpl<K, V> implements IKafkaProducer<K, V> {
       // KafkaJS returns an array of RecordMetadata
       if (result && result.length > 0) {
         const metadata = result[0];
-        callback.onSuccess({
-          topic: metadata.topicName,
-          partition: metadata.partition,
-          offset: metadata.offset.toString(),
-          timestamp: metadata.baseOffset?.toString() || Date.now().toString()
-        } as RecordMetadata);
+        callback.onSuccess(metadata);
       }
     } catch (error) {
       this.logger.error(

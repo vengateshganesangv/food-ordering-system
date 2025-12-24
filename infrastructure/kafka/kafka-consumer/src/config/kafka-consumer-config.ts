@@ -1,8 +1,7 @@
 import { Kafka, Consumer, ConsumerConfig, logLevel, EachBatchPayload, EachMessagePayload } from 'kafkajs';
-import { KafkaConfigData } from '../../../../kafka-config-data/src/kafka-config-data';
-import { KafkaConsumerConfigData } from '../../../../kafka-config-data/src/kafka-consumer-config-data';
+import { KafkaConfigData, KafkaConsumerConfigData } from '@food-ordering-system/kafka-config-data';
 import { IKafkaConsumer } from '../kafka-consumer.interface';
-import { Logger } from '../../../kafka-producer/src/logger';
+import { Logger } from '@food-ordering-system/kafka-producer';
 
 /**
  * Kafka consumer configuration and factory

@@ -32,7 +32,7 @@ export class KafkaMessageHelper {
    * @param payload JSON string payload
    * @param outputType Class constructor for the output type
    */
-  getOrderEventPayload<T>(payload: string, outputType: new (...args: any[]) => T): T {
+  getOrderEventPayload<T extends object>(payload: string, outputType: new (...args: any[]) => T): T {
     try {
       const parsed = JSON.parse(payload);
       // If outputType has a static fromJSON method, use it
@@ -40,7 +40,8 @@ export class KafkaMessageHelper {
         return (outputType as any).fromJSON(parsed);
       }
       // Otherwise, construct directly
-      return Object.assign(new outputType(), parsed);
+      const instance = new outputType();
+      return Object.assign(instance, parsed);
     } catch (error) {
       this.logger.error(`Could not read ${outputType.name} object!`, error);
       throw new Error(`Could not read ${outputType.name} object!`);
@@ -71,8 +72,8 @@ export class KafkaMessageHelper {
       onSuccess: (metadata: RecordMetadata) => {
         this.logger.info(
           `Received successful response from Kafka for order id: ${orderId} ` +
-          `Topic: ${metadata.topic} Partition: ${metadata.partition} ` +
-          `Offset: ${metadata.offset} Timestamp: ${metadata.timestamp}`
+          `Topic: ${metadata.topicName} Partition: ${metadata.partition} ` +
+          `Offset: ${metadata.offset} Timestamp: ${metadata.baseOffset}`
         );
         outboxCallback(outboxMessage, OutboxStatus.COMPLETED);
       },

@@ -1,6 +1,5 @@
 import { Kafka, CompressionTypes, logLevel } from 'kafkajs';
-import { KafkaConfigData } from '../../../kafka-config-data/src/kafka-config-data';
-import { KafkaProducerConfigData } from '../../../kafka-config-data/src/kafka-producer-config-data';
+import { KafkaConfigData, KafkaProducerConfigData } from '@food-ordering-system/kafka-config-data';
 import { KafkaProducerImpl } from './service/kafka-producer-impl';
 import { Logger } from './logger';
 
