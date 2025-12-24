@@ -45,16 +45,16 @@ export class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse> {
 
     const order = await this.approveOrder(restaurantApprovalResponse);
 
-    const sagaStatus = this.orderSagaHelper.orderStatusToSagaStatus(order.getOrderStatus());
+    const sagaStatus = this.orderSagaHelper.orderStatusToSagaStatus(order.getOrderStatus()!);
 
     await this.approvalOutboxHelper.save(
-      this.getUpdatedApprovalOutboxMessage(orderApprovalOutboxMessage, order.getOrderStatus(), sagaStatus),
+      this.getUpdatedApprovalOutboxMessage(orderApprovalOutboxMessage, order.getOrderStatus()!, sagaStatus),
     );
 
     await this.paymentOutboxHelper.save(
       await this.getUpdatedPaymentOutboxMessage(
         restaurantApprovalResponse.getSagaId(),
-        order.getOrderStatus(),
+        order.getOrderStatus()!,
         sagaStatus,
       ),
     );
@@ -81,15 +81,15 @@ export class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse> {
 
     const domainEvent = await this.rollbackOrder(restaurantApprovalResponse);
 
-    const sagaStatus = this.orderSagaHelper.orderStatusToSagaStatus(domainEvent.getOrder().getOrderStatus());
+    const sagaStatus = this.orderSagaHelper.orderStatusToSagaStatus(domainEvent.getOrder().getOrderStatus()!);
 
     await this.approvalOutboxHelper.save(
-      this.getUpdatedApprovalOutboxMessage(orderApprovalOutboxMessage, domainEvent.getOrder().getOrderStatus(), sagaStatus),
+      this.getUpdatedApprovalOutboxMessage(orderApprovalOutboxMessage, domainEvent.getOrder().getOrderStatus()!, sagaStatus),
     );
 
     await this.paymentOutboxHelper.savePaymentOutboxMessage(
       this.orderDataMapper.orderCancelledEventToOrderPaymentEventPayload(domainEvent),
-      domainEvent.getOrder().getOrderStatus(),
+      domainEvent.getOrder().getOrderStatus()!,
       sagaStatus,
       OutboxStatus.STARTED,
       restaurantApprovalResponse.getSagaId(),

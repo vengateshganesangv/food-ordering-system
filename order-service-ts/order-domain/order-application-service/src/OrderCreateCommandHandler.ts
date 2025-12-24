@@ -35,8 +35,8 @@ export class OrderCreateCommandHandler {
 
     await this.paymentOutboxHelper.savePaymentOutboxMessage(
       this.orderDataMapper.orderCreatedEventToOrderPaymentEventPayload(orderCreatedEvent),
-      orderCreatedEvent.getOrder().getOrderStatus(),
-      this.orderSagaHelper.orderStatusToSagaStatus(orderCreatedEvent.getOrder().getOrderStatus()),
+      orderCreatedEvent.getOrder().getOrderStatus()!,
+      this.orderSagaHelper.orderStatusToSagaStatus(orderCreatedEvent.getOrder().getOrderStatus()!),
       OutboxStatus.STARTED,
       uuidv4(),
     );

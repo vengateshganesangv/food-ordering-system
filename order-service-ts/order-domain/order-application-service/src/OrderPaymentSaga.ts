@@ -47,15 +47,15 @@ export class OrderPaymentSaga implements SagaStep<PaymentResponse> {
 
     const domainEvent = await this.completePaymentForOrder(paymentResponse);
 
-    const sagaStatus = this.orderSagaHelper.orderStatusToSagaStatus(domainEvent.getOrder().getOrderStatus());
+    const sagaStatus = this.orderSagaHelper.orderStatusToSagaStatus(domainEvent.getOrder().getOrderStatus()!);
 
     await this.paymentOutboxHelper.save(
-      this.getUpdatedPaymentOutboxMessage(orderPaymentOutboxMessage, domainEvent.getOrder().getOrderStatus(), sagaStatus),
+      this.getUpdatedPaymentOutboxMessage(orderPaymentOutboxMessage, domainEvent.getOrder().getOrderStatus()!, sagaStatus),
     );
 
     await this.approvalOutboxHelper.saveApprovalOutboxMessage(
       this.orderDataMapper.orderPaidEventToOrderApprovalEventPayload(domainEvent),
-      domainEvent.getOrder().getOrderStatus(),
+      domainEvent.getOrder().getOrderStatus()!,
       sagaStatus,
       OutboxStatus.STARTED,
       paymentResponse.getSagaId(),
@@ -83,15 +83,15 @@ export class OrderPaymentSaga implements SagaStep<PaymentResponse> {
 
     const order = await this.rollbackPaymentForOrder(paymentResponse);
 
-    const sagaStatus = this.orderSagaHelper.orderStatusToSagaStatus(order.getOrderStatus());
+    const sagaStatus = this.orderSagaHelper.orderStatusToSagaStatus(order.getOrderStatus()!);
 
     await this.paymentOutboxHelper.save(
-      this.getUpdatedPaymentOutboxMessage(orderPaymentOutboxMessage, order.getOrderStatus(), sagaStatus),
+      this.getUpdatedPaymentOutboxMessage(orderPaymentOutboxMessage, order.getOrderStatus()!, sagaStatus),
     );
 
     if (paymentResponse.getPaymentStatus() === PaymentStatus.CANCELLED) {
       await this.approvalOutboxHelper.save(
-        await this.getUpdatedApprovalOutboxMessage(paymentResponse.getSagaId(), order.getOrderStatus(), sagaStatus),
+        await this.getUpdatedApprovalOutboxMessage(paymentResponse.getSagaId(), order.getOrderStatus()!, sagaStatus),
       );
     }
 
