@@ -28,7 +28,7 @@ export class CustomerDataAccessMapper {
    */
   customerToCustomerEntity(customer: Customer): CustomerEntity {
     const entity = new CustomerEntity();
-    entity.setId(customer.getId().getValue());
+    entity.setId(customer.getId()!.getValue());
     entity.setUsername(customer.getUsername());
     entity.setFirstName(customer.getFirstName());
     entity.setLastName(customer.getLastName());

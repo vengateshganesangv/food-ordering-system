@@ -1,4 +1,4 @@
-import { Restaurant } from '../../../../restaurant-domain-core/src/entity/Restaurant';
+import { Restaurant } from '@food-ordering-system/restaurant-domain-core';
 
 /**
  * Restaurant Repository (Output Port)

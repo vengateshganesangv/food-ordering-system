@@ -13,15 +13,16 @@ export declare class CreditEntry extends BaseEntity<CreditEntryId> {
     subtractCreditAmount(amount: Money): void;
     getCustomerId(): CustomerId;
     getTotalCreditAmount(): Money;
-    static builder(): CreditEntryBuilder;
+    static builder(): InstanceType<typeof CreditEntry.Builder>;
+    static Builder: {
+        new (): {
+            creditEntryId?: CreditEntryId;
+            customerId?: CustomerId;
+            totalCreditAmount?: Money;
+            setCreditEntryId(creditEntryId: CreditEntryId): /*elided*/ any;
+            setCustomerId(customerId: CustomerId): /*elided*/ any;
+            setTotalCreditAmount(totalCreditAmount: Money): /*elided*/ any;
+            build(): CreditEntry;
+        };
+    };
 }
-declare class CreditEntryBuilder {
-    private creditEntryId?;
-    private customerId?;
-    private totalCreditAmount?;
-    setCreditEntryId(creditEntryId: CreditEntryId): CreditEntryBuilder;
-    setCustomerId(customerId: CustomerId): CreditEntryBuilder;
-    setTotalCreditAmount(totalCreditAmount: Money): CreditEntryBuilder;
-    build(): CreditEntry;
-}
-export {};

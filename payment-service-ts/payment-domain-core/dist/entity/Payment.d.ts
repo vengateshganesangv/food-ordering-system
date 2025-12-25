@@ -23,21 +23,22 @@ export declare class Payment extends AggregateRoot<PaymentId> {
     getPrice(): Money;
     getPaymentStatus(): PaymentStatus | undefined;
     getCreatedAt(): Date | undefined;
-    static builder(): PaymentBuilder;
+    static builder(): InstanceType<typeof Payment.Builder>;
+    static Builder: {
+        new (): {
+            paymentId?: PaymentId;
+            orderId?: OrderId;
+            customerId?: CustomerId;
+            price?: Money;
+            paymentStatus?: PaymentStatus;
+            createdAt?: Date;
+            setPaymentId(paymentId: PaymentId): /*elided*/ any;
+            setOrderId(orderId: OrderId): /*elided*/ any;
+            setCustomerId(customerId: CustomerId): /*elided*/ any;
+            setPrice(price: Money): /*elided*/ any;
+            setPaymentStatus(paymentStatus: PaymentStatus): /*elided*/ any;
+            setCreatedAt(createdAt: Date): /*elided*/ any;
+            build(): Payment;
+        };
+    };
 }
-declare class PaymentBuilder {
-    private paymentId?;
-    private orderId?;
-    private customerId?;
-    private price?;
-    private paymentStatus?;
-    private createdAt?;
-    setPaymentId(paymentId: PaymentId): PaymentBuilder;
-    setOrderId(orderId: OrderId): PaymentBuilder;
-    setCustomerId(customerId: CustomerId): PaymentBuilder;
-    setPrice(price: Money): PaymentBuilder;
-    setPaymentStatus(paymentStatus: PaymentStatus): PaymentBuilder;
-    setCreatedAt(createdAt: Date): PaymentBuilder;
-    build(): Payment;
-}
-export {};

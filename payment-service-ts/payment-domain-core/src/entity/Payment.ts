@@ -20,7 +20,10 @@ export class Payment extends AggregateRoot<PaymentId> {
   private createdAt?: Date;
 
   private constructor(props: PaymentProps) {
-    super(props.paymentId!);
+    super();
+    if (props.paymentId) {
+      this.setId(props.paymentId);
+    }
     this.orderId = props.orderId;
     this.customerId = props.customerId;
     this.price = props.price;
@@ -63,57 +66,57 @@ export class Payment extends AggregateRoot<PaymentId> {
     return this.createdAt;
   }
 
-  public static builder(): PaymentBuilder {
-    return new PaymentBuilder();
-  }
-}
-
-class PaymentBuilder {
-  private paymentId?: PaymentId;
-  private orderId?: OrderId;
-  private customerId?: CustomerId;
-  private price?: Money;
-  private paymentStatus?: PaymentStatus;
-  private createdAt?: Date;
-
-  public setPaymentId(paymentId: PaymentId): PaymentBuilder {
-    this.paymentId = paymentId;
-    return this;
+  public static builder(): InstanceType<typeof Payment.Builder> {
+    return new Payment.Builder();
   }
 
-  public setOrderId(orderId: OrderId): PaymentBuilder {
-    this.orderId = orderId;
-    return this;
-  }
+  static Builder = class {
+    public paymentId?: PaymentId;
+    public orderId?: OrderId;
+    public customerId?: CustomerId;
+    public price?: Money;
+    public paymentStatus?: PaymentStatus;
+    public createdAt?: Date;
 
-  public setCustomerId(customerId: CustomerId): PaymentBuilder {
-    this.customerId = customerId;
-    return this;
-  }
+    public setPaymentId(paymentId: PaymentId): this {
+      this.paymentId = paymentId;
+      return this;
+    }
 
-  public setPrice(price: Money): PaymentBuilder {
-    this.price = price;
-    return this;
-  }
+    public setOrderId(orderId: OrderId): this {
+      this.orderId = orderId;
+      return this;
+    }
 
-  public setPaymentStatus(paymentStatus: PaymentStatus): PaymentBuilder {
-    this.paymentStatus = paymentStatus;
-    return this;
-  }
+    public setCustomerId(customerId: CustomerId): this {
+      this.customerId = customerId;
+      return this;
+    }
 
-  public setCreatedAt(createdAt: Date): PaymentBuilder {
-    this.createdAt = createdAt;
-    return this;
-  }
+    public setPrice(price: Money): this {
+      this.price = price;
+      return this;
+    }
 
-  public build(): Payment {
-    return new Payment({
-      paymentId: this.paymentId,
-      orderId: this.orderId!,
-      customerId: this.customerId!,
-      price: this.price!,
-      paymentStatus: this.paymentStatus,
-      createdAt: this.createdAt
-    });
-  }
+    public setPaymentStatus(paymentStatus: PaymentStatus): this {
+      this.paymentStatus = paymentStatus;
+      return this;
+    }
+
+    public setCreatedAt(createdAt: Date): this {
+      this.createdAt = createdAt;
+      return this;
+    }
+
+    public build(): Payment {
+      return new Payment({
+        paymentId: this.paymentId,
+        orderId: this.orderId!,
+        customerId: this.customerId!,
+        price: this.price!,
+        paymentStatus: this.paymentStatus,
+        createdAt: this.createdAt
+      });
+    }
+  };
 }

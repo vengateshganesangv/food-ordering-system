@@ -1,4 +1,4 @@
-import { OrderApproval } from '../../../../restaurant-domain-core/src/entity/OrderApproval';
+import { OrderApproval } from '@food-ordering-system/restaurant-domain-core';
 
 /**
  * Order Approval Repository (Output Port)

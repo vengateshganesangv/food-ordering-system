@@ -14,7 +14,7 @@ export class CustomerMessagingDataMapper {
   customerCreatedEventToAvroModel(customerCreatedEvent: CustomerCreatedEvent): CustomerAvroModel {
     const customer = customerCreatedEvent.getCustomer();
     return {
-      id: customer.getId().getValue(),
+      id: customer.getId()!.getValue(),
       username: customer.getUsername(),
       firstName: customer.getFirstName(),
       lastName: customer.getLastName(),

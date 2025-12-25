@@ -1,9 +1,9 @@
 import { Money, OrderId, OrderStatus, RestaurantId } from '@food-ordering-system/common-domain';
 import { RestaurantApprovalRequest } from '../dto/RestaurantApprovalRequest';
-import { OrderDetail } from '../../../restaurant-domain-core/src/entity/OrderDetail';
-import { Product } from '../../../restaurant-domain-core/src/entity/Product';
-import { Restaurant } from '../../../restaurant-domain-core/src/entity/Restaurant';
-import { OrderApprovalEvent } from '../../../restaurant-domain-core/src/event/OrderApprovalEvent';
+import { OrderDetail } from '@food-ordering-system/restaurant-domain-core';
+import { Product } from '@food-ordering-system/restaurant-domain-core';
+import { Restaurant } from '@food-ordering-system/restaurant-domain-core';
+import { OrderApprovalEvent } from '@food-ordering-system/restaurant-domain-core';
 import { OrderEventPayload, OrderEventPayloadBuilder } from '../outbox/model/OrderEventPayload';
 
 /**
@@ -18,20 +18,20 @@ export class RestaurantDataMapper {
     restaurantApprovalRequest: RestaurantApprovalRequest,
   ): Restaurant {
     const products = restaurantApprovalRequest.products.map((product) =>
-      new Product.Builder()
-        .productId(product.getId())
+      Product.builder()
+        .productId(product.getId()!)
         .quantity(product.getQuantity())
         .build(),
     );
 
-    const orderDetail = new OrderDetail.Builder()
+    const orderDetail = OrderDetail.builder()
       .orderId(new OrderId(restaurantApprovalRequest.orderId))
       .products(products)
       .totalAmount(new Money(restaurantApprovalRequest.price))
       .orderStatus(OrderStatus[restaurantApprovalRequest.restaurantOrderStatus as keyof typeof OrderStatus])
       .build();
 
-    return new Restaurant.Builder()
+    return Restaurant.builder()
       .restaurantId(new RestaurantId(restaurantApprovalRequest.restaurantId))
       .orderDetail(orderDetail)
       .build();

@@ -1,4 +1,7 @@
-import { Money, PaymentStatus, logger } from '@food-ordering-system/common-domain';
+import { Money, PaymentStatus } from '@food-ordering-system/common-domain';
+import { Logger } from '@food-ordering-system/kafka-producer';
+
+const logger = new Logger('PaymentDomainService');
 import { Payment } from './entity/Payment';
 import { CreditEntry } from './entity/CreditEntry';
 import { CreditHistory } from './entity/CreditHistory';

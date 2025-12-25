@@ -14,7 +14,7 @@ export class OrderOutboxCleanerScheduler implements OutboxScheduler {
     private readonly orderOutboxHelper: OrderOutboxHelper,
     logger?: Logger,
   ) {
-    this.logger = logger || console;
+    this.logger = logger || new Logger('OrderOutboxCleanerScheduler');
   }
 
   /**

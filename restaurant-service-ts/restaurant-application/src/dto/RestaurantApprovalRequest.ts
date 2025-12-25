@@ -1,5 +1,5 @@
 import { RestaurantOrderStatus } from '@food-ordering-system/common-domain';
-import { Product } from '../../../restaurant-domain-core/src/entity/Product';
+import { Product } from '@food-ordering-system/restaurant-domain-core';
 
 /**
  * Restaurant Approval Request DTO

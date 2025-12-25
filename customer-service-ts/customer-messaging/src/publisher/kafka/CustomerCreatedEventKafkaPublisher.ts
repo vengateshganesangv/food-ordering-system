@@ -30,7 +30,7 @@ export class CustomerCreatedEventKafkaPublisher implements CustomerMessagePublis
    * @param customerCreatedEvent - The customer created domain event
    */
   publish(customerCreatedEvent: CustomerCreatedEvent): void {
-    const customerId = customerCreatedEvent.getCustomer().getId().getValue();
+    const customerId = customerCreatedEvent.getCustomer().getId()!.getValue();
     console.log(`Received CustomerCreatedEvent for customer id: ${customerId}`);
 
     try {
@@ -44,8 +44,8 @@ export class CustomerCreatedEventKafkaPublisher implements CustomerMessagePublis
         {
           onSuccess: (metadata: RecordMetadata) => {
             console.log(
-              `Received new metadata. Topic: ${metadata.topic}; Partition ${metadata.partition}; ` +
-                `Offset ${metadata.offset}; Timestamp ${metadata.timestamp}, at time ${Date.now()}`
+              `Received new metadata. Topic: ${metadata.topicName}; Partition ${metadata.partition}; ` +
+                `Offset ${metadata.offset}; Timestamp ${metadata.baseOffset}, at time ${Date.now()}`
             );
           },
           onFailure: (error: Error) => {

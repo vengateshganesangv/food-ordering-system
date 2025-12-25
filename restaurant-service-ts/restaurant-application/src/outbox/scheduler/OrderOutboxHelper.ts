@@ -1,7 +1,7 @@
-import { OrderApprovalStatus, DomainConstants } from '@food-ordering-system/common-domain';
+import { OrderApprovalStatus } from '@food-ordering-system/common-domain';
 import { OutboxStatus } from '@food-ordering-system/outbox';
 import { ORDER_SAGA_NAME } from '@food-ordering-system/saga';
-import { RestaurantDomainException } from '../../../restaurant-domain-core/src/exception/RestaurantDomainException';
+import { RestaurantDomainException } from '@food-ordering-system/restaurant-domain-core';
 import { OrderEventPayload } from '../model/OrderEventPayload';
 import { OrderOutboxMessage } from '../model/OrderOutboxMessage';
 import { OrderOutboxRepository } from '../../ports/output/repository/OrderOutboxRepository';
@@ -19,7 +19,7 @@ export class OrderOutboxHelper {
     private readonly orderOutboxRepository: OrderOutboxRepository,
     logger?: Logger,
   ) {
-    this.logger = logger || console;
+    this.logger = logger || new Logger('OrderOutboxHelper');
   }
 
   /**

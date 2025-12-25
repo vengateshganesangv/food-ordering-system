@@ -108,7 +108,7 @@ export class DependencyContainer {
 
     // Register application service components
     const restaurantDataMapper = new RestaurantDataMapper();
-    const orderOutboxHelper = new OrderOutboxHelper(orderOutboxRepository, restaurantDataMapper);
+    const orderOutboxHelper = new OrderOutboxHelper(orderOutboxRepository);
 
     // Setup Kafka
     const kafka = new Kafka({
@@ -135,6 +135,7 @@ export class DependencyContainer {
       restaurantRepository,
       orderApprovalRepository,
       orderOutboxHelper,
+      restaurantApprovalResponseMessagePublisher,
     );
 
     const restaurantApprovalRequestMessageListener: RestaurantApprovalRequestMessageListener =

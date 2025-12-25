@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymentDomainServiceImpl = void 0;
 const common_domain_1 = require("@food-ordering-system/common-domain");
+const kafka_producer_1 = require("@food-ordering-system/kafka-producer");
+const logger = new kafka_producer_1.Logger('PaymentDomainService');
 const CreditHistory_1 = require("./entity/CreditHistory");
 const PaymentCompletedEvent_1 = require("./event/PaymentCompletedEvent");
 const PaymentCancelledEvent_1 = require("./event/PaymentCancelledEvent");
@@ -18,12 +20,12 @@ class PaymentDomainServiceImpl {
         this.updateCreditHistory(payment, creditHistories, TransactionType_1.TransactionType.DEBIT);
         this.validateCreditHistory(creditEntry, creditHistories, failureMessages);
         if (failureMessages.length === 0) {
-            common_domain_1.logger.info(`Payment is initiated for order id: ${payment.getOrderId().getValue()}`);
+            logger.info(`Payment is initiated for order id: ${payment.getOrderId().getValue()}`);
             payment.updateStatus(common_domain_1.PaymentStatus.COMPLETED);
             return new PaymentCompletedEvent_1.PaymentCompletedEvent(payment, new Date());
         }
         else {
-            common_domain_1.logger.info(`Payment initiation is failed for order id: ${payment.getOrderId().getValue()}`);
+            logger.info(`Payment initiation is failed for order id: ${payment.getOrderId().getValue()}`);
             payment.updateStatus(common_domain_1.PaymentStatus.FAILED);
             return new PaymentFailedEvent_1.PaymentFailedEvent(payment, new Date(), failureMessages);
         }
@@ -33,19 +35,19 @@ class PaymentDomainServiceImpl {
         this.addCreditEntry(payment, creditEntry);
         this.updateCreditHistory(payment, creditHistories, TransactionType_1.TransactionType.CREDIT);
         if (failureMessages.length === 0) {
-            common_domain_1.logger.info(`Payment is cancelled for order id: ${payment.getOrderId().getValue()}`);
+            logger.info(`Payment is cancelled for order id: ${payment.getOrderId().getValue()}`);
             payment.updateStatus(common_domain_1.PaymentStatus.CANCELLED);
             return new PaymentCancelledEvent_1.PaymentCancelledEvent(payment, new Date());
         }
         else {
-            common_domain_1.logger.info(`Payment cancellation is failed for order id: ${payment.getOrderId().getValue()}`);
+            logger.info(`Payment cancellation is failed for order id: ${payment.getOrderId().getValue()}`);
             payment.updateStatus(common_domain_1.PaymentStatus.FAILED);
             return new PaymentFailedEvent_1.PaymentFailedEvent(payment, new Date(), failureMessages);
         }
     }
     validateCreditEntry(payment, creditEntry, failureMessages) {
         if (payment.getPrice().isGreaterThan(creditEntry.getTotalCreditAmount())) {
-            common_domain_1.logger.error(`Customer with id: ${payment.getCustomerId().getValue()} doesn't have enough credit for payment!`);
+            logger.error(`Customer with id: ${payment.getCustomerId().getValue()} doesn't have enough credit for payment!`);
             failureMessages.push(`Customer with id=${payment.getCustomerId().getValue()} doesn't have enough credit for payment!`);
         }
     }
@@ -64,11 +66,11 @@ class PaymentDomainServiceImpl {
         const totalCreditHistory = this.getTotalHistoryAmount(creditHistories, TransactionType_1.TransactionType.CREDIT);
         const totalDebitHistory = this.getTotalHistoryAmount(creditHistories, TransactionType_1.TransactionType.DEBIT);
         if (totalDebitHistory.isGreaterThan(totalCreditHistory)) {
-            common_domain_1.logger.error(`Customer with id: ${creditEntry.getCustomerId().getValue()} doesn't have enough credit according to credit history`);
+            logger.error(`Customer with id: ${creditEntry.getCustomerId().getValue()} doesn't have enough credit according to credit history`);
             failureMessages.push(`Customer with id=${creditEntry.getCustomerId().getValue()} doesn't have enough credit according to credit history!`);
         }
         if (!creditEntry.getTotalCreditAmount().equals(totalCreditHistory.subtract(totalDebitHistory))) {
-            common_domain_1.logger.error(`Credit history total is not equal to current credit for customer id: ${creditEntry.getCustomerId().getValue()}!`);
+            logger.error(`Credit history total is not equal to current credit for customer id: ${creditEntry.getCustomerId().getValue()}!`);
             failureMessages.push(`Credit history total is not equal to current credit for customer id: ${creditEntry.getCustomerId().getValue()}!`);
         }
     }

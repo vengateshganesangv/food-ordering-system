@@ -15,17 +15,18 @@ export declare class CreditHistory extends BaseEntity<CreditHistoryId> {
     getCustomerId(): CustomerId;
     getAmount(): Money;
     getTransactionType(): TransactionType;
-    static builder(): CreditHistoryBuilder;
+    static builder(): InstanceType<typeof CreditHistory.Builder>;
+    static Builder: {
+        new (): {
+            creditHistoryId?: CreditHistoryId;
+            customerId?: CustomerId;
+            amount?: Money;
+            transactionType?: TransactionType;
+            setCreditHistoryId(creditHistoryId: CreditHistoryId): /*elided*/ any;
+            setCustomerId(customerId: CustomerId): /*elided*/ any;
+            setAmount(amount: Money): /*elided*/ any;
+            setTransactionType(transactionType: TransactionType): /*elided*/ any;
+            build(): CreditHistory;
+        };
+    };
 }
-declare class CreditHistoryBuilder {
-    private creditHistoryId?;
-    private customerId?;
-    private amount?;
-    private transactionType?;
-    setCreditHistoryId(creditHistoryId: CreditHistoryId): CreditHistoryBuilder;
-    setCustomerId(customerId: CustomerId): CreditHistoryBuilder;
-    setAmount(amount: Money): CreditHistoryBuilder;
-    setTransactionType(transactionType: TransactionType): CreditHistoryBuilder;
-    build(): CreditHistory;
-}
-export {};

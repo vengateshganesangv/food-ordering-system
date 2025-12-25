@@ -29,6 +29,6 @@ export class CustomerDataMapper {
    * @returns CreateCustomerResponse DTO
    */
   customerToCreateCustomerResponse(customer: Customer, message: string): CreateCustomerResponse {
-    return new CreateCustomerResponse(customer.getId().getValue(), message);
+    return new CreateCustomerResponse(customer.getId()!.getValue(), message);
   }
 }

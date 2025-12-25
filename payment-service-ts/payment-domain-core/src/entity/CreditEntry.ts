@@ -12,7 +12,10 @@ export class CreditEntry extends BaseEntity<CreditEntryId> {
   private totalCreditAmount: Money;
 
   private constructor(props: CreditEntryProps) {
-    super(props.creditEntryId!);
+    super();
+    if (props.creditEntryId) {
+      this.setId(props.creditEntryId);
+    }
     this.customerId = props.customerId;
     this.totalCreditAmount = props.totalCreditAmount;
   }
@@ -33,36 +36,36 @@ export class CreditEntry extends BaseEntity<CreditEntryId> {
     return this.totalCreditAmount;
   }
 
-  public static builder(): CreditEntryBuilder {
-    return new CreditEntryBuilder();
-  }
-}
-
-class CreditEntryBuilder {
-  private creditEntryId?: CreditEntryId;
-  private customerId?: CustomerId;
-  private totalCreditAmount?: Money;
-
-  public setCreditEntryId(creditEntryId: CreditEntryId): CreditEntryBuilder {
-    this.creditEntryId = creditEntryId;
-    return this;
+  public static builder(): InstanceType<typeof CreditEntry.Builder> {
+    return new CreditEntry.Builder();
   }
 
-  public setCustomerId(customerId: CustomerId): CreditEntryBuilder {
-    this.customerId = customerId;
-    return this;
-  }
+  static Builder = class {
+    public creditEntryId?: CreditEntryId;
+    public customerId?: CustomerId;
+    public totalCreditAmount?: Money;
 
-  public setTotalCreditAmount(totalCreditAmount: Money): CreditEntryBuilder {
-    this.totalCreditAmount = totalCreditAmount;
-    return this;
-  }
+    public setCreditEntryId(creditEntryId: CreditEntryId): this {
+      this.creditEntryId = creditEntryId;
+      return this;
+    }
 
-  public build(): CreditEntry {
-    return new CreditEntry({
-      creditEntryId: this.creditEntryId,
-      customerId: this.customerId!,
-      totalCreditAmount: this.totalCreditAmount!
-    });
-  }
+    public setCustomerId(customerId: CustomerId): this {
+      this.customerId = customerId;
+      return this;
+    }
+
+    public setTotalCreditAmount(totalCreditAmount: Money): this {
+      this.totalCreditAmount = totalCreditAmount;
+      return this;
+    }
+
+    public build(): CreditEntry {
+      return new CreditEntry({
+        creditEntryId: this.creditEntryId,
+        customerId: this.customerId!,
+        totalCreditAmount: this.totalCreditAmount!
+      });
+    }
+  };
 }

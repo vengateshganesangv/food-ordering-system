@@ -1,15 +1,15 @@
 import { OrderId } from '@food-ordering-system/common-domain';
 import { OutboxStatus } from '@food-ordering-system/outbox';
 import { RestaurantApprovalRequest } from './dto/RestaurantApprovalRequest';
-import { Restaurant } from '../../restaurant-domain-core/src/entity/Restaurant';
-import { OrderApprovalEvent } from '../../restaurant-domain-core/src/event/OrderApprovalEvent';
-import { RestaurantNotFoundException } from '../../restaurant-domain-core/src/exception/RestaurantNotFoundException';
+import { Restaurant } from '@food-ordering-system/restaurant-domain-core';
+// import { OrderApprovalEvent } from '@food-ordering-system/restaurant-domain-core';
+import { RestaurantNotFoundException } from '@food-ordering-system/restaurant-domain-core';
 import { RestaurantDataMapper } from './mapper/RestaurantDataMapper';
 import { OrderOutboxHelper } from './outbox/scheduler/OrderOutboxHelper';
 import { RestaurantApprovalResponseMessagePublisher } from './ports/output/message/publisher/RestaurantApprovalResponseMessagePublisher';
 import { OrderApprovalRepository } from './ports/output/repository/OrderApprovalRepository';
 import { RestaurantRepository } from './ports/output/repository/RestaurantRepository';
-import { RestaurantDomainService } from '../../restaurant-domain-core/src/RestaurantDomainService';
+import { RestaurantDomainService } from '@food-ordering-system/restaurant-domain-core';
 import { Logger } from '@food-ordering-system/kafka-producer';
 
 /**
@@ -28,7 +28,7 @@ export class RestaurantApprovalRequestHelper {
     private readonly restaurantApprovalResponseMessagePublisher: RestaurantApprovalResponseMessagePublisher,
     logger?: Logger,
   ) {
-    this.logger = logger || console;
+    this.logger = logger || new Logger('RestaurantApprovalRequestHelper');
   }
 
   /**
@@ -80,7 +80,7 @@ export class RestaurantApprovalRequestHelper {
     const restaurantResult = await this.restaurantRepository.findRestaurantInformation(restaurant);
 
     if (!restaurantResult) {
-      const restaurantId = restaurant.getId().getValue();
+      const restaurantId = restaurant.getId()!.getValue();
       this.logger.error(`Restaurant with id ${restaurantId} not found!`);
       throw new RestaurantNotFoundException(`Restaurant with id ${restaurantId} not found!`);
     }
@@ -89,12 +89,12 @@ export class RestaurantApprovalRequestHelper {
     restaurant.setActive(restaurantEntity.isActive());
 
     // Match and update product information
-    restaurant.getOrderDetail().getProducts().forEach((product) => {
-      restaurantEntity.getOrderDetail().getProducts().forEach((p) => {
-        if (p.getId().equals(product.getId())) {
+    restaurant.getOrderDetail()!.getProducts().forEach((product) => {
+      restaurantEntity.getOrderDetail()!.getProducts().forEach((p) => {
+        if (p.getId()!.equals(product.getId()!)) {
           product.updateWithConfirmedNamePriceAndAvailability(
-            p.getName(),
-            p.getPrice(),
+            p.getName()!,
+            p.getPrice()!,
             p.isAvailable(),
           );
         }

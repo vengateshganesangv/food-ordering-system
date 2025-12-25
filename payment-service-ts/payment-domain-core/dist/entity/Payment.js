@@ -6,7 +6,10 @@ const PaymentId_1 = require("../valueobject/PaymentId");
 const uuid_1 = require("uuid");
 class Payment extends common_domain_1.AggregateRoot {
     constructor(props) {
-        super(props.paymentId);
+        super();
+        if (props.paymentId) {
+            this.setId(props.paymentId);
+        }
         this.orderId = props.orderId;
         this.customerId = props.customerId;
         this.price = props.price;
@@ -41,11 +44,11 @@ class Payment extends common_domain_1.AggregateRoot {
         return this.createdAt;
     }
     static builder() {
-        return new PaymentBuilder();
+        return new Payment.Builder();
     }
 }
 exports.Payment = Payment;
-class PaymentBuilder {
+Payment.Builder = class {
     setPaymentId(paymentId) {
         this.paymentId = paymentId;
         return this;
@@ -80,4 +83,4 @@ class PaymentBuilder {
             createdAt: this.createdAt
         });
     }
-}
+};

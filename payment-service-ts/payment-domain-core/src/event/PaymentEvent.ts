@@ -2,6 +2,7 @@ import { DomainEvent } from '@food-ordering-system/common-domain';
 import { Payment } from '../entity/Payment';
 
 export abstract class PaymentEvent implements DomainEvent<Payment> {
+  _phantom?: Payment;
   private readonly payment: Payment;
   private readonly createdAt: Date;
   private readonly failureMessages: string[];

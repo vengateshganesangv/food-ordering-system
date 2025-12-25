@@ -3,6 +3,8 @@
  * Thrown when database operations fail
  */
 export class CustomerDataaccessException extends Error {
+  public readonly cause?: Error;
+
   constructor(message: string, cause?: Error) {
     super(message);
     this.name = 'CustomerDataaccessException';

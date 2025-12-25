@@ -1,5 +1,5 @@
 import { OutboxScheduler, OutboxStatus } from '@food-ordering-system/outbox';
-import { OrderOutboxMessage } from '../model/OrderOutboxMessage';
+// import { OrderOutboxMessage } from '../model/OrderOutboxMessage';
 import { RestaurantApprovalResponseMessagePublisher } from '../../ports/output/message/publisher/RestaurantApprovalResponseMessagePublisher';
 import { OrderOutboxHelper } from './OrderOutboxHelper';
 import { Logger } from '@food-ordering-system/kafka-producer';
@@ -16,7 +16,7 @@ export class OrderOutboxScheduler implements OutboxScheduler {
     private readonly responseMessagePublisher: RestaurantApprovalResponseMessagePublisher,
     logger?: Logger,
   ) {
-    this.logger = logger || console;
+    this.logger = logger || new Logger('OrderOutboxScheduler');
   }
 
   /**

@@ -4,7 +4,10 @@ exports.CreditEntry = void 0;
 const common_domain_1 = require("@food-ordering-system/common-domain");
 class CreditEntry extends common_domain_1.BaseEntity {
     constructor(props) {
-        super(props.creditEntryId);
+        super();
+        if (props.creditEntryId) {
+            this.setId(props.creditEntryId);
+        }
         this.customerId = props.customerId;
         this.totalCreditAmount = props.totalCreditAmount;
     }
@@ -21,11 +24,11 @@ class CreditEntry extends common_domain_1.BaseEntity {
         return this.totalCreditAmount;
     }
     static builder() {
-        return new CreditEntryBuilder();
+        return new CreditEntry.Builder();
     }
 }
 exports.CreditEntry = CreditEntry;
-class CreditEntryBuilder {
+CreditEntry.Builder = class {
     setCreditEntryId(creditEntryId) {
         this.creditEntryId = creditEntryId;
         return this;
@@ -45,4 +48,4 @@ class CreditEntryBuilder {
             totalCreditAmount: this.totalCreditAmount
         });
     }
-}
+};

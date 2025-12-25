@@ -1,5 +1,5 @@
 {
-  "extends": "../../../../tsconfig.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
@@ -10,10 +10,10 @@
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"],
   "references": [
-    { "path": "../../../../common/common-domain" },
-    { "path": "../restaurant-domain-core" },
-    { "path": "../../../../infrastructure/outbox" },
-    { "path": "../../../../infrastructure/saga" },
-    { "path": "../../../../infrastructure/kafka/kafka-producer" }
+    { "path": "../../common/common-domain" },
+    { "path": "../restaurant-domain" },
+    { "path": "../../infrastructure/outbox" },
+    { "path": "../../infrastructure/saga" },
+    { "path": "../../infrastructure/kafka/kafka-producer" }
   ]
 }

@@ -4,7 +4,10 @@ exports.CreditHistory = void 0;
 const common_domain_1 = require("@food-ordering-system/common-domain");
 class CreditHistory extends common_domain_1.BaseEntity {
     constructor(props) {
-        super(props.creditHistoryId);
+        super();
+        if (props.creditHistoryId) {
+            this.setId(props.creditHistoryId);
+        }
         this.customerId = props.customerId;
         this.amount = props.amount;
         this.transactionType = props.transactionType;
@@ -19,11 +22,11 @@ class CreditHistory extends common_domain_1.BaseEntity {
         return this.transactionType;
     }
     static builder() {
-        return new CreditHistoryBuilder();
+        return new CreditHistory.Builder();
     }
 }
 exports.CreditHistory = CreditHistory;
-class CreditHistoryBuilder {
+CreditHistory.Builder = class {
     setCreditHistoryId(creditHistoryId) {
         this.creditHistoryId = creditHistoryId;
         return this;
@@ -48,4 +51,4 @@ class CreditHistoryBuilder {
             transactionType: this.transactionType
         });
     }
-}
+};

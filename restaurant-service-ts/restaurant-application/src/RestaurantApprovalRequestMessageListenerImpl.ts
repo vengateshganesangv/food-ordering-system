@@ -16,7 +16,7 @@ export class RestaurantApprovalRequestMessageListenerImpl
     private readonly restaurantApprovalRequestHelper: RestaurantApprovalRequestHelper,
     logger?: Logger,
   ) {
-    this.logger = logger || console;
+    this.logger = logger || new Logger('RestaurantApprovalRequestMessageListener');
   }
 
   /**
