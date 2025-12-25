@@ -65,8 +65,11 @@ import {
 import { IKafkaProducer, KafkaProducerConfig, KafkaMessageHelper } from '@food-ordering-system/kafka-producer';
 import { IKafkaConsumer, KafkaConsumerConfig } from '@food-ordering-system/kafka-consumer';
 
+// Common Dataaccess
+import { RestaurantJpaRepository } from '@food-ordering-system/common-dataaccess';
+
 import { AppConfig } from '../config/ConfigLoader';
-import { Logger } from '@food-ordering-system/common-domain';
+import { Logger } from '@food-ordering-system/kafka-producer';
 
 export class DependencyContainer {
   private static readonly logger = new Logger('DependencyContainer');
@@ -167,9 +170,10 @@ export class DependencyContainer {
   }
 
   private createRestaurantRepository(): RestaurantRepositoryImpl {
+    const restaurantJpaRepository = new RestaurantJpaRepository(this.dataSource);
     const restaurantDataAccessMapper = new RestaurantDataAccessMapper();
     return new RestaurantRepositoryImpl(
-      this.dataSource.getRepository(OrderEntity),
+      restaurantJpaRepository,
       restaurantDataAccessMapper,
     );
   }
@@ -228,13 +232,11 @@ export class DependencyContainer {
 
   private createOrderServiceConfigData(): OrderServiceConfigData {
     return {
-      getPaymentRequestTopicName: () => this.config.orderService.paymentRequestTopicName,
-      getPaymentResponseTopicName: () => this.config.orderService.paymentResponseTopicName,
-      getRestaurantApprovalRequestTopicName: () => this.config.orderService.restaurantApprovalRequestTopicName,
-      getRestaurantApprovalResponseTopicName: () => this.config.orderService.restaurantApprovalResponseTopicName,
-      getOutboxSchedulerFixedRate: () => this.config.orderService.outboxSchedulerFixedRate,
-      getOutboxSchedulerInitialDelay: () => this.config.orderService.outboxSchedulerInitialDelay,
-    } as OrderServiceConfigData;
+      paymentRequestTopicName: this.config.orderService.paymentRequestTopicName,
+      paymentResponseTopicName: this.config.orderService.paymentResponseTopicName,
+      restaurantApprovalRequestTopicName: this.config.orderService.restaurantApprovalRequestTopicName,
+      restaurantApprovalResponseTopicName: this.config.orderService.restaurantApprovalResponseTopicName,
+    };
   }
 
   private createApplicationServices() {
@@ -247,18 +249,14 @@ export class DependencyContainer {
       orderDataMapper,
     );
 
-    const orderSagaHelper = new OrderSagaHelper();
+    const orderSagaHelper = new OrderSagaHelper(this.orderRepository);
 
     const paymentOutboxHelper = new PaymentOutboxHelper(
       this.paymentOutboxRepository,
-      orderDataMapper,
-      orderSagaHelper,
     );
 
     const approvalOutboxHelper = new ApprovalOutboxHelper(
       this.approvalOutboxRepository,
-      orderDataMapper,
-      orderSagaHelper,
     );
 
     const orderPaymentSaga = new OrderPaymentSaga(
@@ -272,13 +270,18 @@ export class DependencyContainer {
 
     const orderApprovalSaga = new OrderApprovalSaga(
       this.orderDomainService,
-      this.orderRepository,
-      approvalOutboxHelper,
       orderSagaHelper,
+      paymentOutboxHelper,
+      approvalOutboxHelper,
       orderDataMapper,
     );
 
-    const orderCreateCommandHandler = new OrderCreateCommandHandler(orderCreateHelper, paymentOutboxHelper);
+    const orderCreateCommandHandler = new OrderCreateCommandHandler(
+      orderCreateHelper,
+      orderDataMapper,
+      paymentOutboxHelper,
+      orderSagaHelper,
+    );
 
     const orderTrackCommandHandler = new OrderTrackCommandHandler(this.orderRepository, orderDataMapper);
 
@@ -302,7 +305,6 @@ export class DependencyContainer {
     );
 
     this.paymentOutboxCleanerScheduler = new PaymentOutboxCleanerScheduler(
-      this.paymentOutboxRepository,
       paymentOutboxHelper,
     );
 
@@ -312,7 +314,6 @@ export class DependencyContainer {
     );
 
     this.restaurantApprovalOutboxCleanerScheduler = new RestaurantApprovalOutboxCleanerScheduler(
-      this.approvalOutboxRepository,
       approvalOutboxHelper,
     );
 

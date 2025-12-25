@@ -1,6 +1,6 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import { DependencyContainer } from '../di/DependencyContainer';
-import { Logger } from '@food-ordering-system/common-domain';
+import { Logger } from '@food-ordering-system/kafka-producer';
 import {
   CreateOrderCommand,
   CreateOrderResponse,
