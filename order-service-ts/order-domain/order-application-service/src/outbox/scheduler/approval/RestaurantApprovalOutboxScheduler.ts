@@ -1,5 +1,6 @@
 import { OutboxScheduler } from '@food-ordering-system/outbox';
-import { OutboxStatus, SagaStatus } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
+import { SagaStatus } from '@food-ordering-system/saga';
 import { ApprovalOutboxHelper } from './ApprovalOutboxHelper';
 import { OrderApprovalOutboxMessage } from '../../model/approval/OrderApprovalOutboxMessage';
 import { RestaurantApprovalRequestMessagePublisher } from '../../../ports/output/message/publisher/restaurantapproval/RestaurantApprovalRequestMessagePublisher';

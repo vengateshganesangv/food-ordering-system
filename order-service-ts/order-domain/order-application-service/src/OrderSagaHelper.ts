@@ -1,4 +1,5 @@
-import { OrderId, OrderStatus, SagaStatus } from '@food-ordering-system/common-domain';
+import { OrderId, OrderStatus } from '@food-ordering-system/common-domain';
+import { SagaStatus } from '@food-ordering-system/saga';
 import { Order, OrderNotFoundException } from '@food-ordering-system/order-domain-core';
 import { OrderRepository } from './ports/output/repository/OrderRepository';
 

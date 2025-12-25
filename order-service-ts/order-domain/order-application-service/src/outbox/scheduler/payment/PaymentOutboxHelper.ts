@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
-import { OrderStatus, OutboxStatus, SagaStatus, ORDER_SAGA_NAME } from '@food-ordering-system/common-domain';
+import { OrderStatus, ORDER_SAGA_NAME } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
+import { SagaStatus } from '@food-ordering-system/saga';
 import { OrderDomainException } from '@food-ordering-system/order-domain-core';
 import { OrderPaymentEventPayload } from '../../model/payment/OrderPaymentEventPayload';
 import { OrderPaymentOutboxMessage } from '../../model/payment/OrderPaymentOutboxMessage';

@@ -1,5 +1,7 @@
 import { Entity, PrimaryColumn, Column, VersionColumn } from 'typeorm';
-import { OrderStatus, OutboxStatus, SagaStatus } from '@food-ordering-system/common-domain';
+import { OrderStatus } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
+import { SagaStatus } from '@food-ordering-system/saga';
 
 @Entity({ name: 'restaurant_approval_outbox', schema: '"order"' })
 export class ApprovalOutboxEntity {

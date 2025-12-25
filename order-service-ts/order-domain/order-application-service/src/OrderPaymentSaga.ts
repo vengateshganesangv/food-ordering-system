@@ -1,4 +1,5 @@
-import { OrderId, OrderStatus, PaymentStatus, SagaStatus, SagaStep } from '@food-ordering-system/common-domain';
+import { OrderId, OrderStatus, PaymentStatus } from '@food-ordering-system/common-domain';
+import { SagaStatus, SagaStep } from '@food-ordering-system/saga';
 import { OrderDomainService, Order, OrderPaidEvent, OrderNotFoundException } from '@food-ordering-system/order-domain-core';
 import { OutboxStatus } from '@food-ordering-system/outbox';
 import { PaymentResponse } from './dto/message/PaymentResponse';

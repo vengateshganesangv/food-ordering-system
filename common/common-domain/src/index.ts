@@ -24,7 +24,3 @@ export {
   RestaurantId,
   RestaurantOrderStatus,
 } from './valueobject';
-
-// Infrastructure pattern exports (re-exported for convenience)
-export { OutboxStatus } from '@food-ordering-system/outbox';
-export { SagaStatus, SagaStep } from '@food-ordering-system/saga';

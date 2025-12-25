@@ -1,4 +1,4 @@
-import { OutboxStatus } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
 import { OrderApprovalOutboxMessage } from '../../../../../outbox/model/approval/OrderApprovalOutboxMessage';
 
 /**

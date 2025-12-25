@@ -1,4 +1,5 @@
-import { OrderStatus, SagaStatus, SagaStep } from '@food-ordering-system/common-domain';
+import { OrderStatus } from '@food-ordering-system/common-domain';
+import { SagaStatus, SagaStep } from '@food-ordering-system/saga';
 import { OrderDomainService, Order, OrderCancelledEvent } from '@food-ordering-system/order-domain-core';
 import { OutboxStatus } from '@food-ordering-system/outbox';
 import { RestaurantApprovalResponse } from './dto/message/RestaurantApprovalResponse';

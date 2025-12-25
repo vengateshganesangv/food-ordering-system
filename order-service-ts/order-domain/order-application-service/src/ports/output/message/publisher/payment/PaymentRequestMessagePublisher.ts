@@ -1,4 +1,4 @@
-import { OutboxStatus } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
 import { OrderPaymentOutboxMessage } from '../../../../../outbox/model/payment/OrderPaymentOutboxMessage';
 
 /**

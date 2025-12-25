@@ -1,4 +1,6 @@
-import { OrderStatus, OutboxStatus, SagaStatus } from '@food-ordering-system/common-domain';
+import { OrderStatus } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
+import { SagaStatus } from '@food-ordering-system/saga';
 
 /**
  * Order Payment Outbox Message

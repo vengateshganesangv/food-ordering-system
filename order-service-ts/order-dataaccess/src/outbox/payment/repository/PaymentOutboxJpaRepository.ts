@@ -1,5 +1,6 @@
 import { In, Repository } from 'typeorm';
-import { OutboxStatus, SagaStatus } from '@food-ordering-system/common-domain';
+import { OutboxStatus } from '@food-ordering-system/outbox';
+import { SagaStatus } from '@food-ordering-system/saga';
 import { PaymentOutboxEntity } from '../entity/PaymentOutboxEntity';
 
 export class PaymentOutboxJpaRepository {
