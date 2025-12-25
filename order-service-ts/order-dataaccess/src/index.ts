@@ -4,7 +4,7 @@ export { OrderItemEntity } from './order/entity/OrderItemEntity';
 export { OrderAddressEntity } from './order/entity/OrderAddressEntity';
 export { CustomerEntity } from './customer/entity/CustomerEntity';
 export { PaymentOutboxEntity } from './outbox/payment/entity/PaymentOutboxEntity';
-export { ApprovalOutboxEntity } from './outbox/restaurantapproval/entity/ApprovalOutboxEntity';
+export { ApprovalOutboxEntity } from './outbox/approval/entity/ApprovalOutboxEntity';
 
 // Order Repository
 export { OrderJpaRepository } from './order/repository/OrderJpaRepository';

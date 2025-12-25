@@ -74,11 +74,11 @@ export class OrderPaymentOutboxMessage {
     this.outboxStatus = outboxStatus;
   }
 
-  static builder(): OrderPaymentOutboxMessageBuilder {
-    return new OrderPaymentOutboxMessageBuilder();
+  static builder(): InstanceType<typeof OrderPaymentOutboxMessage.Builder> {
+    return new OrderPaymentOutboxMessage.Builder();
   }
 
-  static Builder = class OrderPaymentOutboxMessageBuilder {
+  static Builder = class {
     public _id?: string;
     public _sagaId?: string;
     public _createdAt?: Date;

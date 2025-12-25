@@ -26,11 +26,11 @@ export class CustomerModel {
     return this.lastName;
   }
 
-  static builder(): CustomerModelBuilder {
-    return new CustomerModelBuilder();
+  static builder(): InstanceType<typeof CustomerModel.Builder> {
+    return new CustomerModel.Builder();
   }
 
-  static Builder = class CustomerModelBuilder {
+  static Builder = class {
     public _id?: string;
     public _username?: string;
     public _firstName?: string;

@@ -11,11 +11,11 @@ export class OrderPaymentEventPayload {
     public paymentOrderStatus: string,
   ) {}
 
-  static builder(): OrderPaymentEventPayloadBuilder {
-    return new OrderPaymentEventPayloadBuilder();
+  static builder(): InstanceType<typeof OrderPaymentEventPayload.Builder> {
+    return new OrderPaymentEventPayload.Builder();
   }
 
-  static Builder = class OrderPaymentEventPayloadBuilder {
+  static Builder = class {
     public _orderId?: string;
     public _customerId?: string;
     public _price?: number;

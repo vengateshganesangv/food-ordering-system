@@ -50,11 +50,11 @@ export class CreateOrderCommand {
     return this.address;
   }
 
-  static builder(): CreateOrderCommandBuilder {
-    return new CreateOrderCommandBuilder();
+  static builder(): InstanceType<typeof CreateOrderCommand.Builder> {
+    return new CreateOrderCommand.Builder();
   }
 
-  static Builder = class CreateOrderCommandBuilder {
+  static Builder = class {
     public _customerId?: string;
     public _restaurantId?: string;
     public _price?: number;

@@ -1,4 +1,4 @@
-import { ApprovalOutboxEntity } from '../entity/ApprovalOutboxEntity';
+import { ApprovalOutboxEntity } from '../../approval/entity/ApprovalOutboxEntity';
 import { OrderApprovalOutboxMessage } from '@food-ordering-system/order-application-service';
 
 export class ApprovalOutboxDataAccessMapper {

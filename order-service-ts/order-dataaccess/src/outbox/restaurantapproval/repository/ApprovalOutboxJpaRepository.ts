@@ -1,5 +1,5 @@
 import { Repository, In } from 'typeorm';
-import { ApprovalOutboxEntity } from '../entity/ApprovalOutboxEntity';
+import { ApprovalOutboxEntity } from '../../approval/entity/ApprovalOutboxEntity';
 import { OutboxStatus } from '@food-ordering-system/outbox';
 import { SagaStatus } from '@food-ordering-system/saga';
 

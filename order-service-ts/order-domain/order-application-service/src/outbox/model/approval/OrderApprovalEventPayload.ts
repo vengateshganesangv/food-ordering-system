@@ -14,11 +14,11 @@ export class OrderApprovalEventPayload {
     public products: OrderApprovalEventProduct[],
   ) {}
 
-  static builder(): OrderApprovalEventPayloadBuilder {
-    return new OrderApprovalEventPayloadBuilder();
+  static builder(): InstanceType<typeof OrderApprovalEventPayload.Builder> {
+    return new OrderApprovalEventPayload.Builder();
   }
 
-  static Builder = class OrderApprovalEventPayloadBuilder {
+  static Builder = class {
     public _orderId?: string;
     public _restaurantId?: string;
     public _price?: number;

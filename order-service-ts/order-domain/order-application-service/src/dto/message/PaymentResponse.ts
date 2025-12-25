@@ -53,11 +53,11 @@ export class PaymentResponse {
     return this.failureMessages;
   }
 
-  static builder(): PaymentResponseBuilder {
-    return new PaymentResponseBuilder();
+  static builder(): InstanceType<typeof PaymentResponse.Builder> {
+    return new PaymentResponse.Builder();
   }
 
-  static Builder = class PaymentResponseBuilder {
+  static Builder = class {
     public _id?: string;
     public _sagaId?: string;
     public _orderId?: string;

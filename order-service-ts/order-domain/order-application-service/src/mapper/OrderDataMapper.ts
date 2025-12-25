@@ -59,7 +59,7 @@ export class OrderDataMapper {
     }
     return CreateOrderResponse.builder()
       .orderTrackingId(trackingId.getValue())
-      .orderStatus(order.getOrderStatus())
+      .orderStatus(order.getOrderStatus()!)
       .message(message)
       .build();
   }
@@ -71,8 +71,8 @@ export class OrderDataMapper {
     }
     return TrackOrderResponse.builder()
       .orderTrackingId(trackingId.getValue())
-      .orderStatus(order.getOrderStatus())
-      .failureMessages(order.getFailureMessages())
+      .orderStatus(order.getOrderStatus()!)
+      .failureMessages(order.getFailureMessages() || [])
       .build();
   }
 

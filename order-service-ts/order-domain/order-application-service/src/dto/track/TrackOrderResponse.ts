@@ -30,11 +30,11 @@ export class TrackOrderResponse {
     return this.failureMessages;
   }
 
-  static builder(): TrackOrderResponseBuilder {
-    return new TrackOrderResponseBuilder();
+  static builder(): InstanceType<typeof TrackOrderResponse.Builder> {
+    return new TrackOrderResponse.Builder();
   }
 
-  static Builder = class TrackOrderResponseBuilder {
+  static Builder = class {
     public _orderTrackingId?: string;
     public _orderStatus?: OrderStatus;
     public _failureMessages?: string[];

@@ -14,10 +14,14 @@ export class CustomerDataAccessMapper {
 
   customerToCustomerEntity(customer: Customer): CustomerEntity {
     const entity = new CustomerEntity();
-    entity.id = customer.getId().getValue();
-    entity.username = customer.getUsername();
-    entity.firstName = customer.getFirstName();
-    entity.lastName = customer.getLastName();
+    const customerId = customer.getId();
+    if (!customerId) {
+      throw new Error('Customer ID must be set');
+    }
+    entity.id = customerId.getValue();
+    entity.username = customer.getUsername()!;
+    entity.firstName = customer.getFirstName()!;
+    entity.lastName = customer.getLastName()!;
     return entity;
   }
 }

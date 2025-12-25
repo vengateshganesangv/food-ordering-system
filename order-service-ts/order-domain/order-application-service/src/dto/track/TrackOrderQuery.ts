@@ -13,11 +13,11 @@ export class TrackOrderQuery {
     return this.orderTrackingId;
   }
 
-  static builder(): TrackOrderQueryBuilder {
-    return new TrackOrderQueryBuilder();
+  static builder(): InstanceType<typeof TrackOrderQuery.Builder> {
+    return new TrackOrderQuery.Builder();
   }
 
-  static Builder = class TrackOrderQueryBuilder {
+  static Builder = class {
     public _orderTrackingId?: string;
 
     orderTrackingId(val: string): this {

@@ -39,11 +39,11 @@ export class OrderItem {
     return this.subTotal;
   }
 
-  static builder(): OrderItemBuilder {
-    return new OrderItemBuilder();
+  static builder(): InstanceType<typeof OrderItem.Builder> {
+    return new OrderItem.Builder();
   }
 
-  static Builder = class OrderItemBuilder {
+  static Builder = class {
     public _productId?: string;
     public _quantity?: number;
     public _price?: number;

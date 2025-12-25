@@ -8,11 +8,11 @@ export class OrderApprovalEventProduct {
     public quantity: number,
   ) {}
 
-  static builder(): OrderApprovalEventProductBuilder {
-    return new OrderApprovalEventProductBuilder();
+  static builder(): InstanceType<typeof OrderApprovalEventProduct.Builder> {
+    return new OrderApprovalEventProduct.Builder();
   }
 
-  static Builder = class OrderApprovalEventProductBuilder {
+  static Builder = class {
     public _id?: string;
     public _quantity?: number;
 

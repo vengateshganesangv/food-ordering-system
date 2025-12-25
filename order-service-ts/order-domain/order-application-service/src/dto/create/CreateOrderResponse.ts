@@ -33,11 +33,11 @@ export class CreateOrderResponse {
     return this.message;
   }
 
-  static builder(): CreateOrderResponseBuilder {
-    return new CreateOrderResponseBuilder();
+  static builder(): InstanceType<typeof CreateOrderResponse.Builder> {
+    return new CreateOrderResponse.Builder();
   }
 
-  static Builder = class CreateOrderResponseBuilder {
+  static Builder = class {
     public _orderTrackingId?: string;
     public _orderStatus?: OrderStatus;
     public _message?: string;

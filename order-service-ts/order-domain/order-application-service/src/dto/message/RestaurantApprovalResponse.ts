@@ -43,11 +43,11 @@ export class RestaurantApprovalResponse {
     return this.failureMessages;
   }
 
-  static builder(): RestaurantApprovalResponseBuilder {
-    return new RestaurantApprovalResponseBuilder();
+  static builder(): InstanceType<typeof RestaurantApprovalResponse.Builder> {
+    return new RestaurantApprovalResponse.Builder();
   }
 
-  static Builder = class RestaurantApprovalResponseBuilder {
+  static Builder = class {
     public _id?: string;
     public _sagaId?: string;
     public _orderId?: string;

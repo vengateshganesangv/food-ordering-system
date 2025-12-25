@@ -34,9 +34,9 @@ export class OrderDataAccessMapper {
     orderEntity.restaurantId = order.getRestaurantId().getValue();
     orderEntity.trackingId = trackingId.getValue();
     orderEntity.price = order.getPrice().getAmount();
-    orderEntity.orderStatus = order.getOrderStatus();
+    orderEntity.orderStatus = order.getOrderStatus()!;
     orderEntity.failureMessages = order.getFailureMessages()
-      ? order.getFailureMessages().join(FAILURE_MESSAGE_DELIMITER)
+      ? order.getFailureMessages()!.join(FAILURE_MESSAGE_DELIMITER)
       : '';
 
     const addressEntity = this.deliveryAddressToAddressEntity(order.getDeliveryAddress());

@@ -74,11 +74,11 @@ export class OrderApprovalOutboxMessage {
     this.outboxStatus = outboxStatus;
   }
 
-  static builder(): OrderApprovalOutboxMessageBuilder {
-    return new OrderApprovalOutboxMessageBuilder();
+  static builder(): InstanceType<typeof OrderApprovalOutboxMessage.Builder> {
+    return new OrderApprovalOutboxMessage.Builder();
   }
 
-  static Builder = class OrderApprovalOutboxMessageBuilder {
+  static Builder = class {
     public _id?: string;
     public _sagaId?: string;
     public _createdAt?: Date;

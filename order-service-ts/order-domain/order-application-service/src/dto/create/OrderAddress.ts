@@ -31,11 +31,11 @@ export class OrderAddress {
     return this.city;
   }
 
-  static builder(): OrderAddressBuilder {
-    return new OrderAddressBuilder();
+  static builder(): InstanceType<typeof OrderAddress.Builder> {
+    return new OrderAddress.Builder();
   }
 
-  static Builder = class OrderAddressBuilder {
+  static Builder = class {
     public _street?: string;
     public _postalCode?: string;
     public _city?: string;
