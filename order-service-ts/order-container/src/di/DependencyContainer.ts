@@ -135,16 +135,20 @@ export class DependencyContainer {
     this.orderApprovalEventKafkaPublisher = this.createOrderApprovalEventKafkaPublisher();
 
     // Initialize Application Services and Handlers
-    const { orderApplicationService, orderCreateCommandHandler, orderTrackCommandHandler } =
-      this.createApplicationServices();
+    const {
+      orderApplicationService,
+      orderCreateCommandHandler,
+      orderTrackCommandHandler,
+      paymentResponseMessageListener,
+      restaurantApprovalResponseMessageListener,
+      customerMessageListener,
+    } = this.createApplicationServices();
     this.orderApplicationService = orderApplicationService;
     this.orderCreateCommandHandler = orderCreateCommandHandler;
     this.orderTrackCommandHandler = orderTrackCommandHandler;
-
-    // Initialize Message Listeners
-    this.paymentResponseMessageListener = this.createPaymentResponseMessageListener();
-    this.restaurantApprovalResponseMessageListener = this.createRestaurantApprovalResponseMessageListener();
-    this.customerMessageListener = this.createCustomerMessageListener();
+    this.paymentResponseMessageListener = paymentResponseMessageListener;
+    this.restaurantApprovalResponseMessageListener = restaurantApprovalResponseMessageListener;
+    this.customerMessageListener = customerMessageListener;
 
     // Initialize Kafka Listeners
     this.customerKafkaListener = this.createCustomerKafkaListener();
@@ -283,7 +287,7 @@ export class DependencyContainer {
       orderSagaHelper,
     );
 
-    const orderTrackCommandHandler = new OrderTrackCommandHandler(this.orderRepository, orderDataMapper);
+    const orderTrackCommandHandler = new OrderTrackCommandHandler(orderDataMapper, this.orderRepository);
 
     const paymentResponseMessageListener = new PaymentResponseMessageListenerImpl(orderPaymentSaga);
 
@@ -291,7 +295,7 @@ export class DependencyContainer {
       orderApprovalSaga,
     );
 
-    const customerMessageListener = new CustomerMessageListenerImpl(this.customerRepository);
+    const customerMessageListener = new CustomerMessageListenerImpl(this.customerRepository, orderDataMapper);
 
     const orderApplicationService = new OrderApplicationServiceImpl(
       orderCreateCommandHandler,
@@ -321,57 +325,10 @@ export class DependencyContainer {
       orderApplicationService,
       orderCreateCommandHandler,
       orderTrackCommandHandler,
+      paymentResponseMessageListener,
+      restaurantApprovalResponseMessageListener,
+      customerMessageListener,
     };
-  }
-
-  private createPaymentResponseMessageListener(): PaymentResponseMessageListenerImpl {
-    const orderSagaHelper = new OrderSagaHelper();
-    const orderDataMapper = new OrderDataMapper();
-    const paymentOutboxHelper = new PaymentOutboxHelper(
-      this.paymentOutboxRepository,
-      orderDataMapper,
-      orderSagaHelper,
-    );
-    const approvalOutboxHelper = new ApprovalOutboxHelper(
-      this.approvalOutboxRepository,
-      orderDataMapper,
-      orderSagaHelper,
-    );
-
-    const orderPaymentSaga = new OrderPaymentSaga(
-      this.orderDomainService,
-      this.orderRepository,
-      paymentOutboxHelper,
-      approvalOutboxHelper,
-      orderSagaHelper,
-      orderDataMapper,
-    );
-
-    return new PaymentResponseMessageListenerImpl(orderPaymentSaga);
-  }
-
-  private createRestaurantApprovalResponseMessageListener(): RestaurantApprovalResponseMessageListenerImpl {
-    const orderSagaHelper = new OrderSagaHelper();
-    const orderDataMapper = new OrderDataMapper();
-    const approvalOutboxHelper = new ApprovalOutboxHelper(
-      this.approvalOutboxRepository,
-      orderDataMapper,
-      orderSagaHelper,
-    );
-
-    const orderApprovalSaga = new OrderApprovalSaga(
-      this.orderDomainService,
-      this.orderRepository,
-      approvalOutboxHelper,
-      orderSagaHelper,
-      orderDataMapper,
-    );
-
-    return new RestaurantApprovalResponseMessageListenerImpl(orderApprovalSaga);
-  }
-
-  private createCustomerMessageListener(): CustomerMessageListenerImpl {
-    return new CustomerMessageListenerImpl(this.customerRepository);
   }
 
   private createCustomerKafkaListener(): CustomerKafkaListener {

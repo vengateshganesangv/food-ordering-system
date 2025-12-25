@@ -3,7 +3,7 @@ import { DataSource } from 'typeorm';
 import { ConfigLoader } from './config/ConfigLoader';
 import { DependencyContainer } from './di/DependencyContainer';
 import { Application } from './app/Application';
-import { Logger } from '@food-ordering-system/common-domain';
+import { Logger } from '@food-ordering-system/kafka-producer';
 
 // Import entities
 import {
